@@ -22,6 +22,7 @@
   --teal: #20c997;
   --cyan: #17a2b8;
   --white: #fff;
+  --black: #000;
   --gray: #6c757d;
   --gray-dark: #343a40;
   --primary: #bd5d38;
@@ -64,7 +65,8 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  /* color: #212529;*/
+  color: #000;
   text-align: left;
   background-color: #fff;
 }
@@ -159,12 +161,12 @@ sup {
 }
 
 a {
-  color: #bd5d38;
+  color:var(--gray);
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #824027;
+  color:var(--gray-dark);
   text-decoration: underline;
 }
 
@@ -363,7 +365,8 @@ h1, h2, h3, h4, h5, h6,
   font-family: "Saira Extra Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
   line-height: 1.2;
-  color: #343a40;
+  /* color: #343a40; */
+  color: #000;
 }
 
 h1, .h1 {
@@ -6097,7 +6100,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #bd5d38 !important;
+  background-color: #000 !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -9799,7 +9802,8 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #bd5d38 !important;
+  /* color: #bd5d38 !important; */
+  color:var(--black);
 }
 
 a.text-primary:hover, a.text-primary:focus {
@@ -10002,7 +10006,8 @@ h3 {
 }
 body {
   padding-top: 3.375rem;
-  color: #6c757d;
+  /* color: #6c757d; */
+  color: #000;
 }
 
 @media (min-width: 992px) {
@@ -10064,7 +10069,7 @@ p.lead {
   #sideNav .navbar-brand .img-profile {
     max-width: 10rem;
     max-height: 10rem;
-    border: 0.5rem solid rgba(255, 255, 255, 0.2);
+    /* border: 0.5rem solid rgba(255, 255, 255, 0.2); */
   }
   #sideNav .navbar-collapse {
     display: flex;
@@ -10090,7 +10095,8 @@ p.lead {
   justify-content: center;
   height: 3.5rem;
   width: 3.5rem;
-  background-color: #495057;
+  /* background-color: #495057; */
+  background-color: #000;
   color: #fff;
   border-radius: 100%;
   font-size: 1.5rem;
@@ -10100,7 +10106,11 @@ p.lead {
   margin-right: 0;
 }
 .social-icons .social-icon:hover {
+  background-color: #343a40;
+  /* 
   background-color: #bd5d38;
+  --gray: #6c757d;
+  --gray-dark: #343a40; */
 }
 
 .dev-icons {
@@ -10132,4 +10142,8 @@ section.resume-section .resume-section-content {
     padding-top: 5rem;
     padding-bottom: 5rem;
   }
+}
+
+.privacy {
+  padding:10px !important;
 }
