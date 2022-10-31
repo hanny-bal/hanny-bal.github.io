@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-10-31T23:03:45+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">David Hanny</title><subtitle>A blog about studying data science, technology and life</subtitle><author><name>David</name></author><entry><title type="html">Real-Time Glucose Levels in Gnome</title><link href="http://localhost:4000/2022/10/31/dexcom-glucose-tray.html" rel="alternate" type="text/html" title="Real-Time Glucose Levels in Gnome" /><published>2022-10-31T19:08:00+01:00</published><updated>2022-10-31T19:08:00+01:00</updated><id>http://localhost:4000/2022/10/31/dexcom-glucose-tray</id><content type="html" xml:base="http://localhost:4000/2022/10/31/dexcom-glucose-tray.html">&lt;p&gt;Diabetes technology has advanced a lot in recent years: Glucose sensors and their respective apps bring blood sugar measurements right to the smartphone, the first closed-loop systems are hitting the market and diabetes management increasingly happens digitally. With a good part of the generated data being stored in the cloud, the field also becomes more and more interesting for developers and data scientists.&lt;/p&gt;
+
+&lt;p&gt;Many diabetics with a Continuous Glucose Monitoring (CGM) or Flash Glucose Monitoring (FGM) system might know the dilemma: You want to power through a focused session of work without distractions but yet you regularly have to pick up your phone to check your glucose levels – breaking the flow every time.&lt;/p&gt;
+
+&lt;p&gt;At least for users of the Dexcom G4, G5 and G6, I present a solution to this problem. Granted, it currently only works on Linux with a &lt;a href=&quot;https://www.gnome.org/&quot;&gt;Gnome desktop environment&lt;/a&gt; but should easily be extendable to MacOS.&lt;/p&gt;
+
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;The big advantage of the Dexcom CGM system is that its app offers the so-called &lt;em&gt;share&lt;/em&gt; functionality which is originally there to share one’s glucose values with another person, e.g. a relative, in real-time. In our solution, we exploit exactly this feature by accessing its API.&lt;/p&gt;
+
+&lt;p&gt;Therefore, the share functionality must be activated in the Dexcom app and at least one follower has to exist for the following steps to work. The follower doesn’t have to be active though.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-plan&quot;&gt;The plan&lt;/h2&gt;
+&lt;p&gt;With the Dexcom share connection set up, we can now access it using a myriad of API calls &lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. My first thought was to build a Gnome extension that executes the necessary API calls and displays the result in the tray bar. While this might seem like an easy task, Gnome shell puts a huge spoke in the wheel. Building a proper extension requires the use of the &lt;a href=&quot;https://gjs.guide/extensions/development/creating.html#a-working-extension&quot; target=&quot;_blank&quot;&gt;gjs JavaScript library&lt;/a&gt; which is not only super specific and lengthy but also lacks a straightforward documentation. Even more, the complexity of HTTP request comes straight out of hell in gjs. After a few hours of trying to access just one of the APIs – let alone display anything – I decided that the disproportionate time and lines of code weren’t worth the effort.&lt;/p&gt;
+
+&lt;p&gt;Luckily, the open source community saves the day with &lt;a href=&quot;https://github.com/p-e-w/argos&quot; target=&quot;_blank&quot;&gt;Argos&lt;/a&gt;: An extension wrapper for Gnome that makes it possible to only write the core logic of the desired extension in an arbitrary script (e.g. Bash or Python). The produced standard output is then parsed and transformed into a tray extension. Sounds awesome, right? Well, it is!&lt;/p&gt;
+
+&lt;p&gt;Additionally, there is the neat Python package &lt;a href=&quot;https://github.com/gagebenne/pydexcom&quot; target=&quot;_blank&quot;&gt;pydexcom&lt;/a&gt; which automatizes the needed API calls to access the Dexcom share service. Thus, all we need to install is Argos and pydexcom and we’re ready to go.&lt;/p&gt;
+
+&lt;h1 id=&quot;setup&quot;&gt;Setup&lt;/h1&gt;
+&lt;p&gt;With everything ready, make sure to activate the Argos for Gnome in the extensions menu. An example menu should pop up in the tray bar. To configure Argos for our needs, first navigate to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.config/argos&lt;/code&gt;. You will find an example script named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;argos.sh&lt;/code&gt; which displays the mentioned menu in the tray bar. To deactivate it, simply hide the file by renaming it to .argos.sh.&lt;/p&gt;
+
+&lt;p&gt;Next, create a simple Python script that is named something like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;glucose_runner.5m.py&lt;/code&gt; in the Argos config folder. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;glucose_runner&lt;/code&gt; is the name of our custom extension which can be changed arbitrarily and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;5m&lt;/code&gt; part states that the file is rerun every five minutes. This interval can be changed according to your needs. However, smaller intervals don’t make a lot of sense as the Dexcom G6 sensor only sends a new glucose value every five minutes.&lt;/p&gt;
+
+&lt;p&gt;With the most minimal configuration, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;glucose_runner.5m.py&lt;/code&gt; Python file can look as follows:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/env python3
+&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pydexcom&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dexcom&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# set ous to True if outside the US, otherwise False
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dexcom&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dexcom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;password&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ous&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# read and display the blood sugar value and trend arrow
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dexcom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_current_glucose_reading&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;trend_arrow&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Make sure to enter the correct username – which is the email address – and password of your default Dexcom user. Don’t use the follower! When the script is saved, the output should immediately appear in the top tray bar:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2022/2022-10-31-dexcom-tray-example-hd.png&quot; alt=&quot;&quot; /&gt;
+&lt;em&gt;The result should look something like this.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;There we have it: A real-time glucose indicator in the tray!&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion-and-discussion&quot;&gt;Conclusion and discussion&lt;/h2&gt;
+&lt;p&gt;Obviously, the above solution relies on a bunch of third-party tools. This might not be ideal for everyone. However, eases the pain of maintenance if anything within Gnome or the Dexcom APIs changes. Moreover, it is restricted to Linux in combination with Gnome which only very few people are running. Luckily, there’s a similar extension to Argos on MacOS called &lt;a href=&quot;https://xbarapp.com/&quot; target=&quot;_blank&quot;&gt;xbar&lt;/a&gt; (previously BitBar). The setup should be completely analogous.&lt;/p&gt;
+
+&lt;p&gt;On Windows, the case is a bit more complicated, though still possible. With a proper Python library like &lt;a href=&quot;https://pypi.org/project/PyQt5/&quot; target=&quot;_blank&quot;&gt;PyQt5&lt;/a&gt;, a system tray item should still only require a few lines of code.&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;https://github.com/nightscout/share2nightscout-bridge/issues/15 &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;https://www.geeksforgeeks.org/system-tray-applications-using-pyqt5/ &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>David</name></author><category term="Technology, Linux" /><summary type="html">Are you wearing a Dexcom (G4, G5 or G6) Continuous Glucose Monitoring system and want to display your current glucose level in Gnome's top tray bar? Then you have come to the right place!</summary></entry><entry><title type="html">Life Between Confusion and Illusion</title><link href="http://localhost:4000/2022/10/31/life-between-and-illusion.html" rel="alternate" type="text/html" title="Life Between Confusion and Illusion" /><published>2022-10-31T16:57:00+01:00</published><updated>2022-10-31T16:57:00+01:00</updated><id>http://localhost:4000/2022/10/31/life-between-and-illusion</id><content type="html" xml:base="http://localhost:4000/2022/10/31/life-between-and-illusion.html">&lt;p&gt;&lt;img src=&quot;/images/2022/2022-10-31-pic1.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;em&gt;Photo: Riccardo Mion / Unsplash&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Note: This text was originally published on July 7, 2022, on &lt;a href=&quot;https://medium.com/@hannybal&quot; target=&quot;_blank&quot;&gt;medium.com&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;A year can feel like an extended month. Or it can feel like a decade. Especially when big changes happen. Often, the individual months during eventful times don’t seem special at all. But they do add up to some sort of time-jelly that can neither be defined nor measured. Until one day, you wake up and realise how different things have become. Weirdly enough, this happens all the time.&lt;/p&gt;
+
+&lt;p&gt;I remember graduating in journalism during the peak of the coronavirus pandemic. That was twelve months ago. I remember going for a run in the warm sun that morning, nervously checking the stability of my internet, the awkward video call and closing my laptop to head off and celebrate passing my final exam. Everything feels so close yet distanced. Ever since my graduation, I’ve moved to another city, took on a master’s, dealt with more math problems than I have in my entire previous life, met lots of new people (by corona standards) and much more.&lt;/p&gt;
+
+&lt;p&gt;All of that was exciting and wonderful, yet the past months were some of the most anxious of my adulthood. It’s only now that I’m slowly realising that everything will end up well. The question is: What makes us paralysed like we’ve been stung by some insect when uncertainty strikes? Honestly, I don’t have a clear answer to that. But I do have some general thoughts on the topic.&lt;/p&gt;
+
+&lt;p&gt;Specifically, I want to take you on a journey and examine some ideas about the beautifully absurd struggle of life.&lt;/p&gt;
+
+&lt;h2 id=&quot;feeling-lost--actually-lost&quot;&gt;Feeling lost ≠ actually lost&lt;/h2&gt;
+
+&lt;p&gt;Arguably, one of the biggest perks of living in the 21st Century is the endless possibilities we face. There are so many subjects to study and jobs to choose from. A lot of older folks haven’t even heard of half of those professions.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, this also means most of us will feel lost at some point in our lives. It’s almost inevitable. By choosing one path you reject dozens of others. Nobody can tell me that’s not scary as hell.&lt;/p&gt;
+
+&lt;p&gt;So let’s say a certain degree of “lostness” is normal, particularly in one’s early 20s.&lt;/p&gt;
+
+&lt;p&gt;In that context, the line between feeling lost and facing serious self-doubts is not to be underestimated. If you already know what you want to do in the foreseeable future and yet you constantly feel lost the reason might lie a lot deeper than plain confusion about life. Give it some time, do your best and gain some confidence. It should get better. If not, it’s time to mix things up and talk to a friend, maybe even a professional.&lt;/p&gt;
+
+&lt;h2 id=&quot;cut-back-on-social-media-seriously&quot;&gt;Cut back on social media. Seriously!&lt;/h2&gt;
+
+&lt;p&gt;Sometimes, after a good day, I tell myself that I’m quickly gonna check social media to see what’s going on in the big world. Only to end up in despair about life 30 minutes later. One time it’s the huge dump of useless information that stresses me out, another time it’s me comparing myself to some person online I don’t even know. Regardless, it always boils down to me “just wanting to check Instagram” for a few minutes and ending up feeling miserable.&lt;/p&gt;
+
+&lt;p&gt;Certainly, some people can process that kind of information quite well and simply do their thing. But how good is the majority of us really at dealing with our extended social life online?&lt;/p&gt;
+
+&lt;p&gt;While the psychological effects of social media still ought to be examined more thoroughly, there’s &lt;a href=&quot;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7364393/&quot; target=&quot;_blank&quot;&gt;evidence&lt;/a&gt; that links prolonged social-media exposure to anxiety and depression. From a subjective perspective, social networks tend to amplify a lot of insecurities, no matter how deeply they are hidden. Eventually, we have to ask ourselves: Is the psychological stress worth the benefits? Sure, social media connects people but so does a simple messenger app. So why bother with the sensory overload of a full-blown social media app?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2022/2022-10-31-pic2.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;em&gt;Photo: Tanjir Ahmed Chowdhury / Unsplash&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;A quick tip: Use the website of the desired social network instead of the app. That way, you can still message friends and view their stories but without the insane sensory overload. I can highly recommend it!&lt;/p&gt;
+
+&lt;h2 id=&quot;realise-that-most-things-are-not-that-important&quot;&gt;Realise that most things are not that important&lt;/h2&gt;
+
+&lt;p&gt;There are these quiet moments in life when time doesn’t seem to exist. It happens while listening to nature, feeling a warm summer breeze between your hair, sipping a cup of coffee in your favourite café, reading a good book or having a deep conversation with a close person.&lt;/p&gt;
+
+&lt;p&gt;These are the moments that truly represent what it means to be alive. To breathe and feel reality with all its sensations. In a way, that’s all we have. Everything else is temporary.&lt;/p&gt;
+
+&lt;p&gt;Thus, between the stress of day-to-day life, take a step back once in a while and observe yourself from a more abstract perspective. What will truly matter in a few years? Most situations seem much more dramatic when we’re in the midst of them. Though, this is much easier said than done. What can help with abstracting the situation is some sort of active reflection like journaling, taking a long walk or talking to a trusted person.&lt;/p&gt;
+
+&lt;h2 id=&quot;life-is--relative&quot;&gt;Life is … relative?&lt;/h2&gt;
+
+&lt;p&gt;This article is largely inspired by a very confusing and exciting year and it reflects some of the major learnings of this time. Everything we do is inherently relative. Most of us operate within such a small bubble that even the most obvious aspects of life can’t be taken for granted. In my case, that bubble was doing journalism in Vienna.&lt;/p&gt;
+
+&lt;p&gt;Once you step out of this bubble — even for a little bit — things might be overwhelming. Lots of doubts are just waiting to rise and shine. It’s a perfidious situation that’s almost unavoidable. But it is controllable.&lt;/p&gt;
+
+&lt;p&gt;Even more, chaos is the essence of being young. Taking risks to grow as a person — there’s nothing as scary yet rewarding. So if you’re thinking about taking your life on a rollercoaster ride you might as well do it. After some basic considerations, of course. Just don’t limit yourself by ifs and buts. Because after all, life is relative anyway.&lt;/p&gt;</content><author><name>David</name></author><category term="Life" /><summary type="html">The saying &quot;There ain’t no such thing as a free lunch.&quot; applies to many things in life. A story about navigating the unknown, excitement and dealing with confusion.</summary></entry><entry><title type="html">I’ve Logged My Life in an Excel Sheet</title><link href="http://localhost:4000/2022/10/31/life-in-an-excel-sheet.html" rel="alternate" type="text/html" title="I’ve Logged My Life in an Excel Sheet" /><published>2022-10-31T00:00:00+01:00</published><updated>2022-10-31T00:00:00+01:00</updated><id>http://localhost:4000/2022/10/31/life-in-an-excel-sheet</id><content type="html" xml:base="http://localhost:4000/2022/10/31/life-in-an-excel-sheet.html">&lt;p&gt;&lt;img src=&quot;/images/2022/2022-10-31-pic3-brent-gorwin-unsplash.jpg&quot; alt=&quot;&quot; /&gt;
+&lt;em&gt;Photo: Brent Gorwin / Unsplash&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Note: This text was originally published on August 24, 2020 on &lt;a href=&quot;https://hannybal.writeas.com/&quot; target=&quot;_blank&quot;&gt;writeas.com&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;First of all – I know! I haven’t posted in months. For several reasons. But I’m back. At least for now. Ever since university ended (and Corona hasn’t!) my life is full of ups and downs. I’ve learned so much during the past few months that I’ll put a big thanks out there for all the great people in my life.&lt;/p&gt;
+
+&lt;p&gt;Now to the actual topic. Due to university and several projects at work, I’m constantly bombarded with new corrections, thoughts, tasks and ideas. From all sides. All-day every day. Sometimes I fall a bit off track for this reason. What should I do first? What are my priorities? Is it even worth it to put effort into this assignment? I constantly asked myself those questions – and it got quite frustrating.&lt;/p&gt;
+
+&lt;p&gt;Life shouldn’t consist of putting out fires all the time – and by that I mean you shouldn’t just focus on solving the most urgent task before the next one arrives. I like order. Because to build something great, you need some kind of consistency. When you build a house, you don’t start with putting together the roof and choosing the best-looking windows. You start with a foundation and work your bottom up. That’s why I like thinking more one-way and more stringent. I want my tasks all scattered around a clear line which leads to one goal. Not all over the place.&lt;/p&gt;
+
+&lt;p&gt;But how do I become focused? A strategy that worked for me is creating lists, namely in the form of excel spreadsheets. Probably not everyone loves a good dataset as much as I do – but oh, it worked wonders for my life. And it doesn’t have to be perfectly structured either. In particular, I have created two kinds of lists for two different aspects of life. Let me explain.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-goal-list&quot;&gt;The Goal-List&lt;/h2&gt;
+
+&lt;p&gt;The first and probably most important list in terms of impact is my goal-list. It’s not really a list but more like a random file of notes on my computer. On this goal list, I write down the goals I want to achieve for certain aspects of life – like personal life, studying, career or fitness. Usually, those goals have no structure whatsoever. Some lie in the very distant future and some can be achieved within a few weeks.&lt;/p&gt;
+
+&lt;p&gt;For me, it’s not about whether those goals are achievable in the near future or not. They’re more like a tool for me. When I feel lost in life, I open this file and look at my words. Do my actions align with what I want to achieve? Sometimes I have to adapt my goals – whenever I realize that one of my goals isn’t achievable in the way I want or I’ve achieved it. Often, I can also get more specific with one goal because I’ve dug into the topic. Goals are evolving creatures. Every time I open my list, they change a bit. But the existence of this list alone gives me some orientation in life.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-stuff-list&quot;&gt;The Stuff-List&lt;/h2&gt;
+
+&lt;p&gt;With my goal-list, I have managed to declutter my mind. After its first creation, I was hooked. I wanted to declutter the rest of my life as well. So I decided to make another list – a list of every item I owned. As Karma wanted it, I had an eye-infection when this idea came up in my mind. I couldn’t go outside because sunlight hurt my eyes – basically, I was a vampire. But the circumstance gave me the time to set aside an afternoon and count all of my stuff. Everything. Yes, I’m serious.&lt;/p&gt;
+
+&lt;p&gt;I created an excel-list for every room in my apartment and even included items multiple times if I owned it more than once. Now I know: I own a total of 497 items. Sounds crazy. But it was eye-opening. Like, why on earth do I have five huge spoons for cooking? Why the hell do I own two camera tripods? Why do I have five unused storage boxes in my cupboard? And why do I have seven cleaning clothes? I only realized how much irrelevant stuff I owned when I wrote it down. It’s crazy. Soon after, a big declutter happened.&lt;/p&gt;
+
+&lt;h2 id=&quot;listify-your-life&quot;&gt;Listify your life&lt;/h2&gt;
+
+&lt;p&gt;These two are just the most important examples. Currently, I’m structuring half of my life in spreadsheets: finances, my apartment search, my uni timetable and a lot more.&lt;/p&gt;
+
+&lt;p&gt;I might be a bit obsessed with lists. But damn, they gave me the control over my life I always needed. Lists are black and white. When I slack off, I can immediately see it. I can spot if I need to change something when looking at my goal-sheet and I can see all the clutter of my life on my stuff-list. Lists are powerful tools. And I can recommend you trying using them in your life too.&lt;/p&gt;</content><author><name>David</name></author><category term="Life, Data" /><summary type="html">Lists. They offer a weirdly satisfying mix of structure and freedom of choice. Of clarity and exploration. And they can be incredibly useful.</summary></entry></feed>
