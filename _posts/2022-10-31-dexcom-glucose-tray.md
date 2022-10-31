@@ -17,7 +17,7 @@ At least for users of the Dexcom G4, G5 and G6, I present a solution to this pro
 ## Prerequisites
 The big advantage of the Dexcom CGM system is that its app offers the so-called *share* functionality which is originally there to share one's glucose values with another person, e.g. a relative, in real-time. In our solution, we exploit exactly this feature by accessing its API.
 
-Therefore, the share functionality must be activated in the Dexcom app and at least one follower has to exist for the following steps to work. The follower doesn't have to be active though.
+Therefore, the share functionality must be activated in the Dexcom app and at least one follower must exist for the following steps to work. The follower doesn't have to be active though.
 
 ## The plan
 With the Dexcom share connection set up, we can now access it using a myriad of API calls [^1]. My first thought was to build a Gnome extension that executes the necessary API calls and displays the result in the tray bar. While this might seem like an easy task, Gnome shell puts a huge spoke in the wheel. Building a proper extension requires the use of the [gjs JavaScript library](https://gjs.guide/extensions/development/creating.html#a-working-extension){:target="_blank"} which is not only super specific and lengthy but also lacks a straightforward documentation. Even more, the complexity of HTTP request comes straight out of hell in gjs. After a few hours of trying to access just one of the APIs – let alone display anything – I decided that the disproportionate time and lines of code weren't worth the effort.
@@ -27,7 +27,7 @@ Luckily, the open source community saves the day with [Argos](https://github.com
 Additionally, there is the neat Python package [pydexcom](https://github.com/gagebenne/pydexcom){:target="_blank"} which automatizes the needed API calls to access the Dexcom share service. Thus, all we need to install is Argos and pydexcom and we're ready to go.
 
 # Setup
-With everything ready, make sure to activate the Argos for Gnome in the extensions menu. An example menu should pop up in the tray bar. To configure Argos for our needs, first navigate to `~/.config/argos`. You will find an example script named `argos.sh` which displays the mentioned menu in the tray bar. To deactivate it, simply hide the file by renaming it to .argos.sh.
+With everything ready, make sure to activate the Argos for Gnome in the extensions menu. An example menu should pop up in the tray bar. To configure Argos for our needs, first navigate to `~/.config/argos`. You will find an example script named `argos.sh` which displays the mentioned menu in the tray bar. To deactivate it, simply hide the file by renaming it to `.argos.sh`.
 
 Next, create a simple Python script that is named something like `glucose_runner.5m.py` in the Argos config folder. `glucose_runner` is the name of our custom extension which can be changed arbitrarily and the `5m` part states that the file is rerun every five minutes. This interval can be changed according to your needs. However, smaller intervals don't make a lot of sense as the Dexcom G6 sensor only sends a new glucose value every five minutes.
 
