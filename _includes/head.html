@@ -7,3 +7,14 @@
 </script>
 <script type="text/javascript" async src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 {% endif %}
+
+{% if page.useplotly %}
+<script src="/assets/js/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="/assets/js/plotly-binding-4.10.0/plotly.js"></script>
+<script src="/assets/js/typedarray-0.1/typedarray.min.js"></script>
+<script src="/assets/js/jquery-3.5.1/jquery.min.js"></script>
+<link href="/assets/js/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="/assets/js/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="/assets/js/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="/assets/js/plotly-main-2.5.1/plotly-latest.min.js"></script>
+{% endif %}
