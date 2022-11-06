@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Life Between Confusion and Illusion
-date:   2022-10-31 16:57:00 +0100
+date:   2022-10-15 16:57:00 +0100
 excerpt: The saying "There ain’t no such thing as a free lunch." applies to many things in life. A story about navigating the unknown, excitement and dealing with confusion.
 thumbnail: /images/2022/2022-10-31-pic1.jpg
 tag: Life

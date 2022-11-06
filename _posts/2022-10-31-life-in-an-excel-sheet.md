@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  I’ve Logged My Life in an Excel Sheet
-date:   2022-10-31 00:00:00 +0100
+date:   2022-10-01 00:00:00 +0100
 excerpt: Lists. They offer a weirdly satisfying mix of structure and freedom of choice. Of clarity and exploration. And they can be incredibly useful.
 thumbnail: /images/2022/2022-10-31-pic3-brent-gorwin-unsplash.jpg
 tag: Life, Data
