@@ -2,7 +2,7 @@
 layout: post
 title:  "Clickly graphics! Interactive data visualization in R with Plotly."
 date:   2022-11-06 14:30:00 +0100
-excerpt: "Most data is easy to visualize – but doing it well is hard. In-between axis names, color schemes and orientations one can easily get lost. A guide to navigating   wilderness with Plotly."
+excerpt: "Most data is easy to visualize – but doing it well is hard. In-between axis names, color schemes and orientations one can easily get lost. A guide to navigating this wilderness with Plotly."
 thumbnail: /images/2022/2022-11-05-plotly_thumbnail.png
 tag: Data Science
 useplotly: true
