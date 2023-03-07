@@ -2,6 +2,14 @@
   
     {
 
+      "title"    : "Train your AI to write like Kafka",
+      "url"      : "/2022/11/08/plotly_basics.html",
+      "category" : "",
+      "date"     : "November  8, 2022"
+    } ,
+  
+    {
+
       "title"    : "Clickly graphics! Interactive data visualization in R with Plotly.",
       "url"      : "/2022/11/06/plotly_basics.html",
       "category" : "",
