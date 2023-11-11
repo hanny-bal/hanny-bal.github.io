@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# activate github pages 
+gem "github-pages", "~> 227", group: :jekyll_plugins
+
 gem 'jekyll'
 
 group :jekyll_plugins do
