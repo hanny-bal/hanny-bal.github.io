@@ -4,7 +4,7 @@ title: David Hanny
 description: PhD Researcher | Spatial Data Science
 
 baseurl: "" #name of GitHub repository
-url: "https://www.davidhanny.at/" #custom url to be used instead of GitHub repository
+url: "https://www.davidhanny.at" #custom url to be used instead of GitHub repository
 email: #
 
 # Pagination
