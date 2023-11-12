@@ -1,9 +1,7 @@
 source 'https://rubygems.org'
 
-# activate github pages 
-gem "github-pages", "~> 227", group: :jekyll_plugins
-
 gem 'jekyll'
+gem `github-pages`
 
 group :jekyll_plugins do
   gem 'jekyll-seo-tag'
