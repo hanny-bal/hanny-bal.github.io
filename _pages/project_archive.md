@@ -18,7 +18,7 @@ Being the curious mind I am, I have acquired a few online certifications to expa
 - [JavaScript Algorithms and Data Structures](https://www.freecodecamp.org/certification/david_hn/javascript-algorithms-and-data-structures){:target="blank"} 
 - [Responsive Web Design](https://www.freecodecamp.org/certification/david_hn/responsive-web-design){:target="blank"} 
 
-I also completed the follwing courses that do not come with a certificate but are highly recommended for anyone interested in data journalism:
+I also completed the following courses that do not come with a certificate but are highly recommended for anyone interested in data journalism:
 - [R for Journalists](https://learn.r-journalism.com/en/){:target="blank"}
 - [Python for Journalists](https://datajournalism.com/watch/python-for-journalists){:target="blank"}
 
