@@ -15,7 +15,7 @@ Over the years, I have finished a variety of personal projects. This page contai
 ### Certifications
 Being the curious mind I am, I have acquired a few online certifications to expand my skillset:
 - [Spatial Data Science and Applications](https://coursera.org/share/95b9691ca24c1375d7815b98db7848f6){:target="blank"}
-- [Architecting with Google Kubernetes Engine](https://www.coursera.org/account/accomplishments/specialization/certificate/6ZF2ZDA8TC3X){:target="blank"}
+- [Architecting with Google Kubernetes Engine](https://coursera.org/share/c0866927fe5d4a8615cdebaf612309c2){:target="blank"}
 - [JavaScript Algorithms and Data Structures](https://www.freecodecamp.org/certification/david_hn/javascript-algorithms-and-data-structures){:target="blank"} 
 - [Responsive Web Design](https://www.freecodecamp.org/certification/david_hn/responsive-web-design){:target="blank"} 
 
