@@ -13,15 +13,15 @@ Over the years, I have finished a variety of personal projects. This page contai
 - [Dexcom Tray](https://github.com/hanny-bal/dexcom-tray){:target="blank"} (2022):  A Gnome tray application for displaying the current glucose level of Dexcom CGM users with the help of the Dexcom Share API.
 
 ### Certifications
-Being the curious mind I am, I have acquired a few online certifications to expand my skillset:
+I have also acquired a few online certifications to expand my skillset:
 - [Spatial Data Science and Applications](https://coursera.org/share/95b9691ca24c1375d7815b98db7848f6){:target="blank"}
 - [Architecting with Google Kubernetes Engine](https://coursera.org/share/c0866927fe5d4a8615cdebaf612309c2){:target="blank"}
 - [JavaScript Algorithms and Data Structures](https://www.freecodecamp.org/certification/david_hn/javascript-algorithms-and-data-structures){:target="blank"} 
 - [Responsive Web Design](https://www.freecodecamp.org/certification/david_hn/responsive-web-design){:target="blank"} 
 
-I also completed the following courses that do not come with a certificate but are highly recommended for anyone interested in data journalism:
+Besides that, I completed the following courses that do not come with a certificate but are highly recommended for anyone interested in data journalism:
 - [R for Journalists](https://learn.r-journalism.com/en/){:target="blank"}
 - [Python for Journalists](https://datajournalism.com/watch/python-for-journalists){:target="blank"}
 
 ### Journalistic Work
-I also published quite a few articles during my time as a journalist which are archived seperately. -> [Journalistic Archive]({{site.baseurl}}/journalistic-archive.html)
+During my time as a journalist, I published quite a few articles which are archived seperately. -> [Journalistic Archive]({{site.baseurl}}/journalistic-archive.html)
