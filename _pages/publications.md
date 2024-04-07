@@ -12,6 +12,7 @@ permalink: publications.html
 
 - **Hanny, D.**, Schmidt, S., & Resch, B. (2024). Active Learning for Identifying Disaster-Related Tweets: A Comparison with Keyword Filtering and Generic Fine-Tuning. Accepted for the [Intelligent Systems Conference 2024](https://saiconference.com/IntelliSys){:target="blank"}.
 
+[Intelligent Systems Conference 2024](https://saiconference.com/IntelliSys){:target="blank"}
 
 ## Theses
 - **Hanny, D.** (2023). Spatiotemporal topic-sentiment modeling of social media data with neural networks [Master Thesis]. University of Salzburg. [Link to the university library](https://ubsearch.sbg.ac.at/permalink/f/16hc907/USB_alma21270627650003341){:target="blank"}
