@@ -7,6 +7,7 @@ permalink: project-archive.html
 Over the years, I have finished a variety of personal projects. This page contains a brief overview. 
 
 ### Technical Projects
+- [Café Map](https://github.com/hanny-bal/cafe-map){:target="blank"} (2024): A [Leaflet.js](https://leafletjs.com/){:target="blank"} map of all cafés in Salzburg with my personal reviews and recommendations. [View it here]({{site.baseurl}}/download/cafe-map/index.html){:target="blank"}.
 - [LSH](https://github.com/hanny-bal/LSH){:target="blank"} (2023): A Python implementation of nearest-neighbor search for text data using locality-sensitive hashing (LSH).
 - [Apriori](https://github.com/hanny-bal/apriori){:target="blank"} (2023): A Python implementation of the (randomized) Apriori algorithm for mining frequent item sets.
 - [Diabetes Analytics](https://github.com/hanny-bal/diabetes-analytics){:target="blank"} (2022): An R Shiny app for pattern recognition and analysis of blood sugar data for diabetics.
