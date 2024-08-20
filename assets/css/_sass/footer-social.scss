@@ -33,6 +33,7 @@
 .rounded-social-buttons .fa-twitter,
 .fa-facebook-f,
 .fa-linkedin,
+.fa-google-scholar,
 .fa-github,
 .fa-orcid,
 .fa-researchgate,
@@ -71,6 +72,16 @@
   color: #007bb5;
   background: #fefefe;
   border-color: #007bb5;
+}
+
+.rounded-social-buttons .social-button.gscholar {
+  background: #4185f4;
+}
+
+.rounded-social-buttons .social-button.gscholar:hover, .rounded-social-buttons .social-button.gscholar:focus {
+  color: #4185f4;
+  background: #fefefe;
+  border-color: #4185f4;
 }
 
 .rounded-social-buttons .social-button.github {
