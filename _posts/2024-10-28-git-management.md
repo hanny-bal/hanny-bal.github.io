@@ -5,7 +5,9 @@ excerpt: "Managing multiple Git accounts on a single machine is often essential.
 minutes: 3
 ---
 
-Picture this: you have repositories on Gitlab for work and another set on GitHub for your personal projects. If you're anything like me, sometimes you will need to access both on the same machine. In principle, this can be achieved fairly easily. However, getting there can be challenging, especially if you're not familiar with the exact working principles of Git and its authentication methods. I can't count the numbers of times I had to go through the steps below on a colleague's laptop because nobody else in my working group knew how to set up Git properly with Secure Shell (SSH). Well, this is why we're here today. How to set up multiple Git accounts on the same machine using different SSH keys?
+Picture this: you have repositories on Gitlab for work and another set on GitHub for your personal projects. If you're anything like me, sometimes you will need to access both on the same machine. In principle, this can be achieved fairly easily. However, getting there can be challenging, especially if you're not familiar with the exact working principles of Git and its authentication methods. 
+
+I can't count the numbers of times I had to go through the steps below on a colleague's laptop because nobody else in my working group knew how to set up Git properly with Secure Shell (SSH). Well, this is why we're here today. How to set up multiple Git accounts on the same machine using different SSH keys?
 
 Let’s break it down.
 
