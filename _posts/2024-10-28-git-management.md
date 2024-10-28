@@ -91,4 +91,5 @@ git config --global user.email johndoe@example.com
 With everything in place, you're now ready to handle multiple Git accounts without a hitch. Start cloning, committing and pushing. Git will know exactly which key and credentials to use for each repository, keeping your work and personal projects organised and secure.
 
 Cheers!
+
 David
