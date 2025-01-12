@@ -26,37 +26,20 @@ The Raspberry Pi is the basis of our HPC setup. It acts as a low-cost and energy
 To run basic Python notebooks, I use [Miniconda](https://docs.anaconda.com/miniconda/install/){:target="blank"} with [Visual Studio Code](https://code.visualstudio.com/docs/setup/raspberry-pi){:target="blank"}. Files can be synced via Git and data can copied via [SCP](https://medium.com/@letsstartlooping/how-to-use-scp-to-copy-files-over-ssh-7cdd604f7c30) or Google Drive (which is what I use).
 
 ## Component 2: Google Colab
-The more interesting part of setup is Google Colab. The main issue with longer Colab sessions for me always is that they disconnect if I close or lock my laptop. This can be circumvented with the Raspberry Pi. If you have a longer session to run, use the browser on your Raspberri Pi (via Raspberry Pi Connect or VNC). The following script in Python can then be used to simulate user input which will keep the session running as long as free compute resources or credits are available.
+The more interesting part of setup is Google Colab. The main issue with longer Colab sessions for me always is that they disconnect if I close or lock my laptop. This can be circumvented with the Raspberry Pi. If you have a longer session to run, use the browser on your Raspberri Pi (via Raspberry Pi Connect or VNC). With this setup, you can use any automation library (e.g. pyautogui) to simulate user input which will keep the Colab session running.
 
-```python
-import random
-import time
-import pyautogui
+While I generally do recommend Python in combination with pyautogui for automation, this solution unfortunately does not work on the newest Raspberry Pi OS due to Wayland display protocol. Programmatically moving the mouse on Wayland is really cumbersome. One alternative I found is to install wtype `sudo apt install wtype` and then create a bash script with the following content:
 
-def move():
-    x: int = random.randint(500,800)
-    y: int = random.randint(400,600)
-    scroll_1: int = random.randint(100, 300)
-    scroll_2: int = random.randint(100, 300)
-
-    pyautogui.moveTo(200, 200, duration = 1)
-    pyautogui.scroll(scroll_1) 
-    pyautogui.moveTo(200 + x, 200, duration = 1)
-    pyautogui.scroll(-scroll_1) 
-    pyautogui.moveTo(200 + x, 200 + y, duration = 1)
-    pyautogui.click(button='right')
-    pyautogui.moveTo(200, 200 + y, duration = 1)
-    pyautogui.click(button='left')
-    pyautogui.scroll(scroll_2)
-    pyautogui.scroll(-scroll_2) 
-    
-while True:
-    move()
-    #print('#')
-    time.sleep(random.randint(1, 30))
+```bash
+while true; do
+    wtype w -d 2000 a -d 1000 i -d 1500 t
+    sleep 30
+done
 ```
 
-You will need to install pyautogui using `pip install pyautogui`. To make the execution easier, you might also append the line `alias keep-running="python /path/to/script.py"` to your `~/.bashrc` file. This way, you can trigger the simulated behaviour by simply entering `keep-running`. Otherwise, just run the script as is.
+Store this script as `simulate-keystrokes.sh` somewhere on your Raspberry Pi and modify it to be executable using `sudo chmod +x simulate-keystrokes.sh`. It will type the word "wait" every 30 seconds with a pause of 1-2 seconds between every letter. If you now need to keep a Google Colab session running, execute the script using `./simulate-keystrokes.sh`, go to an empty cell in the Colab notebook and let the computer fill the cell.
+
+To make things even easier, you might also append the line `alias simulate-keystrokes="bash /path/to/script.sh"` to your `~/.bashrc` file. This way, you can trigger the simulated behaviour by simply entering `simulate-keystrokes`.
 
 As mentioned, you can easily sync your Git repository with Colab as described [here](https://www.hanny.dev/blog/2025/git-colab/){:target="blank"}.
 
