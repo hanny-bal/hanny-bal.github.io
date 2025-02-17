@@ -29,7 +29,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 
-a {
+/* a {
   color: $brand-color;
   text-decoration: none;
   &:hover{
@@ -40,11 +40,11 @@ a {
     }*/
 
   }
-}
+} */
 
 
 
-p a {
+a {  // orginally p a
   color: $text-color;
   text-decoration: none;
   background: -webkit-linear-gradient(transparent 90%, lighten($brand-color, 10%) 10%);
