@@ -7,7 +7,7 @@ permalink: publications.html
 
 ## Publications
 
-A non-exhaustive list of my publications so far!
+A non-exhaustive list of my publications so far.
 
 #### 2025
 
