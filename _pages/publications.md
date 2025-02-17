@@ -26,4 +26,4 @@ asd
 
 - **Hanny, D.** (2023). Spatiotemporal topic-sentiment modeling of social media data with neural networks [Master Thesis]. University of Salzburg. [Link](https://ubsearch.sbg.ac.at/permalink/f/16hc907/USB_alma21270627650003341){:target="blank"}, [Slides]({{site.baseurl}}/download/publications/presentation_ageo_award_ma_thesis.pdf){:target="blank"}, [Video](https://www.youtube.com/watch?v=mdu2wP9Fl_w){:target="blank"}
 
-<p></p>
+- does this make a difference?
