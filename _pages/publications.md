@@ -7,9 +7,11 @@ permalink: publications.html
 
 ## Publications
 
+A non-exhaustive list of my publications so far!
+
 #### 2025
 
-Schmidt, S., Friedemann, M., **Hanny, D**., Resch, B., Riedlinger, T., & Mühlbauer, M. (2025). Enhancing satellite-based emergency mapping: Identifying wildfires through geo-social media analysis. Big Earth Data, 0(0), 1–23. [Link](https://doi.org/10.1080/20964471.2025.2454526){:target="blank"}.
+- Schmidt, S., Friedemann, M., **Hanny, D**., Resch, B., Riedlinger, T., & Mühlbauer, M. (2025). Enhancing satellite-based emergency mapping: Identifying wildfires through geo-social media analysis. Big Earth Data, 0(0), 1–23. [Link](https://doi.org/10.1080/20964471.2025.2454526){:target="blank"}.
 
 
 #### 2024
