@@ -11,7 +11,10 @@ A non-exhaustive list of my scientific publications so far.
 
 #### 2025
 
-- Schmidt, S., Friedemann, M., **Hanny, D**., Resch, B., Riedlinger, T., & Mühlbauer, M. (2025). Enhancing satellite-based emergency mapping: Identifying wildfires through geo-social media analysis. Big Earth Data, 0(0), 1–23. [Link](https://doi.org/10.1080/20964471.2025.2454526){:target="blank"}.
+- **Hanny, D.**, Arifi, D., Knoblauch, S., Resch, B., Lautenbach, S., Zipf, A., & de Aragão Rocha, A. A. (2025). An explainable GeoAI approach for the multimodal analysis of urban human dynamics: A case study for the COVID-19 pandemic in Rio de Janeiro. Computational Urban Science, 5(1), 13. [Link](https://doi.org/10.1007/s43762-025-00172-2){:target="blank"}
+
+
+- Schmidt, S., Friedemann, M., **Hanny, D.**, Resch, B., Riedlinger, T., & Mühlbauer, M. (2025). Enhancing satellite-based emergency mapping: Identifying wildfires through geo-social media analysis. Big Earth Data, 0(0), 1–23. [Link](https://doi.org/10.1080/20964471.2025.2454526){:target="blank"}
 
 #### 2024
 
