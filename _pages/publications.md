@@ -3,7 +3,7 @@ title:
 layout: default
 permalink: publications.html
 ---
-
+<!-- TODO: replace this with babbase once it is reachable again -->
 
 ## Publications
 
