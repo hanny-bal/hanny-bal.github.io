@@ -7,12 +7,14 @@ permalink: publications.html
 
 ## Publications
 
-A non-exhaustive list of my scientific publications so far.
-
 #### 2025
 
-- **Hanny, D.**, Arifi, D., Knoblauch, S., Resch, B., Lautenbach, S., Zipf, A., & de Aragão Rocha, A. A. (2025). An explainable GeoAI approach for the multimodal analysis of urban human dynamics: A case study for the COVID-19 pandemic in Rio de Janeiro. Computational Urban Science, 5(1), 13. [Link](https://doi.org/10.1007/s43762-025-00172-2){:target="blank"}
+- Resch, B., Kolokoussis, P., **Hanny, D.**, Brovelli, M. A., & Kamel Boulos, M. N. (2025). The generative revolution: AI foundation models in geospatial health—applications, challenges and future research. International Journal of Health Geographics, 24(1), 6. [Link](https://doi.org/10.1186/s12942-025-00391-0){:target="blank"}
 
+
+- Schmidt, S., Díaz Fragachan, E., Arifi, D., **Hanny, D.**, & Resch, B. (2025). Assessing the spatial accuracy of geocoding flood-related imagery using Vision Language Models. Spatial Information Research, 33(2), 15. [Link](https://doi.org/10.1007/s41324-025-00609-0){:target="blank"}
+
+- **Hanny, D.**, Arifi, D., Knoblauch, S., Resch, B., Lautenbach, S., Zipf, A., & de Aragão Rocha, A. A. (2025). An explainable GeoAI approach for the multimodal analysis of urban human dynamics: A case study for the COVID-19 pandemic in Rio de Janeiro. Computational Urban Science, 5(1), 13. [Link](https://doi.org/10.1007/s43762-025-00172-2){:target="blank"}
 
 - Schmidt, S., Friedemann, M., **Hanny, D.**, Resch, B., Riedlinger, T., & Mühlbauer, M. (2025). Enhancing satellite-based emergency mapping: Identifying wildfires through geo-social media analysis. Big Earth Data, 0(0), 1–23. [Link](https://doi.org/10.1080/20964471.2025.2454526){:target="blank"}
 
