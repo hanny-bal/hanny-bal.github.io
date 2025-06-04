@@ -44,7 +44,7 @@ a {
 
 
 
-p a {  // orginally p a
+p a, li a {  // orginally p a
   color: $text-color;
   text-decoration: none;
   background: -webkit-linear-gradient(transparent 90%, lighten($brand-color, 10%) 10%);
