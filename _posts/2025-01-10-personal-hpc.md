@@ -1,8 +1,10 @@
 ---
 layout: post
-title: "Create your own budget High Performance Computing cluster with a Raspberry Pi and Google Colab"
+title: "Build a Budget HPC Cluster with Raspberry Pi and Google Colab"
 excerpt: "Your personal computer runs into issues with big data workflows? But cloud compute resources are expensive? Then I have a solution for your problem: Your own HPC cluster based on a Raspberry Pi and Google Colab."
 minutes: 3
+seo_title: "Build a budget HPC Cluster with Raspberry Pi and Google Colab"
+seo_description: "How to set up a personal high performance computing (HPC) cluster using a Raspberry Pi and Google Colab. Ideal for researchers and hobbyists working with big data and machine learning on a budget."
 ---
 
 In my dayjob as a researcher, I frequently run large-scale data analysis workflows that involve all kinds of processing steps including the training and application of Large Language Models (LLMs) and Application Programming Interface (API) calls. While there are some compute resources available for researchers, including University-wide and national computing clusters, access to them is not always trivial. Frequently, I find myself running a workflow on my personal computer or Google Colab instead because it requires much less overhead and can be used instantaneously. In addition, I am able to use both for private projects as well.

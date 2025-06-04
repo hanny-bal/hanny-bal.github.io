@@ -3,6 +3,8 @@ layout: post
 title: "Automatic software updates for Windows Server 2019 using winget"
 excerpt: "You can't always choose the server infrastracture you have to manage. But you can at least try to make the best out of it. A guide on how to install and use winget on Windows Server 2019."
 minutes: 2
+seo_title: "How to install and use winget on Windows Server 2019 for automatic software updates"
+seo_description: "A tep-by-step guide to manually install winget on Windows Server 2019 and use it to automate software updates via PowerShell. Improve your server security and reduce manual maintenance!"
 ---
 
 During my project work at the University, I was faced with having to manage four servers running Windows Server 2019, all crammed with software that needed to be run. The challenge: **All of the installed programs must always be up-to-date**. Otherwise, one would risk security issues or a not so kind email from the IT department. This meant

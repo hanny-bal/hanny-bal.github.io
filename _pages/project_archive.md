@@ -2,6 +2,9 @@
 title: 
 layout: default
 permalink: project-archive.html
+seo_title: "Personal projects: Tech, data science and journalism"
+seo_description: "My growing collection of personal projects, including open-source tools in Python and R, data science apps, diabetes analytics, interactive maps and some journalism work. Also includes certifications and course recommendations."
+
 ---
 
 Over the years, I have finished a variety of personal projects. This page contains a brief overview. 

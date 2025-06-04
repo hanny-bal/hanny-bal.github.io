@@ -3,6 +3,8 @@ layout: post
 title: "Reset and lock your conda installation without deleting your environments"
 excerpt: "You accidentally screwed up your entire conda installation? No need to reinstall all your packages! An easy way to reset your conda installation."
 minutes: 2
+seo_title: "How to reset a broken conda installation without losing your environments"
+seo_description: "Learn how to fix a broken or corrupted conda installation without deleting your environments. This guide shows how to reset conda and lock the base environment to prevent future issues."
 ---
 
 If you ever found yourself in dependency hell with conda, you might know the frustration. Once an environment is totally shot, it’s usually easier to delete it and create a new one. You then try this new fix you found online and screw up the environment again. Full circle. Repeat until it finally works.
