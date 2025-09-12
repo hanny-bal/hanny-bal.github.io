@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link rel="stylesheet" href="/assets/css/main.css">
+
+        <h1 class="post-headline">David Hanny</h1>
+        <h3 class="post-description">PhD Researcher | Spatial Data Science</h3>
+
+        <div class="links"> <!-- note: I removed the scroll class -->
+        <a href="/">Home</a>
+        <a href="/publications.html">Publications</a>
+        <a href="/project-archive.html">Projects</a>
+        <a href="/download/cv_hanny.pdf", target="_blank">CV</a>
+        <a href="/blog/">Blog</a>
+        <!-- <a href="https://hannybal.bearblog.dev/" target="_blank">Blog</a>-->
+        <!--<a href="/projects/">Projects</a>-->
+        <!--<a href="/archive/">Archive</a>-->
+</div>
+
+
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>How to reset a broken conda installation without losing your environments | David Hanny</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="How to reset a broken conda installation without losing your environments" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learn how to fix a broken or corrupted conda installation without deleting your environments. This guide shows how to reset conda and lock the base environment to prevent future issues." />
+<meta property="og:description" content="Learn how to fix a broken or corrupted conda installation without deleting your environments. This guide shows how to reset conda and lock the base environment to prevent future issues." />
+<link rel="canonical" href="http://localhost:4000/blog/2024/conda-reset/" />
+<meta property="og:url" content="http://localhost:4000/blog/2024/conda-reset/" />
+<meta property="og:site_name" content="David Hanny" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-10-29T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How to reset a broken conda installation without losing your environments" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-29T00:00:00+01:00","datePublished":"2024-10-29T00:00:00+01:00","description":"Learn how to fix a broken or corrupted conda installation without deleting your environments. This guide shows how to reset conda and lock the base environment to prevent future issues.","headline":"How to reset a broken conda installation without losing your environments","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2024/conda-reset/"},"url":"http://localhost:4000/blog/2024/conda-reset/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+        <!-- Generated using https://favicon.io/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?">
+<link rel="manifest" href=site.webmanifest">
+
+
+        <!-- MathJax -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+     processEscapes: true
+    }
+  });
+</script>
+
+
+        <!-- Load fontawesome here for faster loadtimes: https://stackoverflow.com/a/35880730/9523246 -->
+        <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v6.6.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+    </head>
+
+    <body>
+        <main>
+            <article>
+                <h1 class="post-headline">How to reset a broken conda installation without losing your environments</h1>
+<p class="meta"><small>October 29, 2024, 2 minute read</small></p>
+
+<p>If you ever found yourself in dependency hell with conda, you might know the frustration. Once an environment is totally shot, it’s usually easier to delete it and create a new one. You then try this new fix you found online and screw up the environment again. Full circle. Repeat until it finally works.</p>
+
+<p>But as time goes by, humans become more careless. It frequently has happened to me that I installed packages in the conda <em>base</em> environment instead of the actual environment I just created. Oops. Usually, that’s not a big deal. Sometimes, however, such a small mistake made my entire conda installation stop working.</p>
+
+<p>So, what to do in such a case? Luckily, it’s possible to reset an entire conda installation pretty quickly <strong>while also keeping all existing environments intact</strong>. Additionally, it also makes sense to lock the base environment and make it uneditable to prevent such mistakes in the future.</p>
+
+<h2 id="reset-your-installation">Reset your installation</h2>
+
+<p>This tutorial will generally assume a Linux installation. On a Windows machine, the procedure will be analogous.</p>
+
+<h3 id="step-1-backup-the-existing-installation">Step 1: Backup the existing installation</h3>
+
+<p>First, rename your conda folder to keep all existing environments.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mv</span> ~/miniconda3 ~/miniconda3_bck
+</code></pre></div></div>
+
+<h3 id="step-2-reinstall-conda">Step 2: Reinstall conda</h3>
+
+<p>Then, reinstall conda as usual</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/miniconda3
+wget <span class="s2">"https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"</span> <span class="nt">-O</span> ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh <span class="nt">-b</span> <span class="nt">-u</span> <span class="nt">-p</span> ~/miniconda3
+<span class="nb">rm</span> ~/miniconda3/miniconda.sh
+</code></pre></div></div>
+
+<h3 id="step-3-restore-your-existing-environments">Step 3: Restore your existing environments</h3>
+
+<p>Finally, you can restore your existing environments by moving the respective folders. You might just also move some of the environments instead of all.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mv</span> ~/miniconda3_bck/envs ~/miniconda3
+</code></pre></div></div>
+
+<p>You can check if everything works by running <code class="language-plaintext highlighter-rouge">conda info --envs</code>. If it does, delete the backup folder using <code class="language-plaintext highlighter-rouge">rm -rf ~/miniconda3_bck</code> .</p>
+
+<h2 id="lock-your-base-environment">Lock your base environment</h2>
+
+<p>To avoid future mishappenings, we can now lock the base environment right away.</p>
+
+<ol>
+  <li>First, run the command <code class="language-plaintext highlighter-rouge">python -c "import setuptools; print(setuptools.__file__)"</code> . This will return a path that looks something like this: <code class="language-plaintext highlighter-rouge">/home/&lt;user&gt;/miniconda3/lib/python3.12/site-packages/setuptools/init.py</code> . The part that comes before the setuptools folder (i.e. the parent folder) is the path we want to lock.</li>
+  <li>Run <code class="language-plaintext highlighter-rouge">chmod -w &lt;path-to-lock&gt;</code> to remove write permissions for this folder. You should now be unable to install any packages to the base environment.</li>
+  <li>In case you still do need install something all of a sudden, you can add the permissions back by running <code class="language-plaintext highlighter-rouge">chmod +w &lt;path-to-lock&gt;</code> .</li>
+</ol>
+
+<h2 id="done">Done!</h2>
+
+<p>That’s it. Challenge resolved. You now have a fresh conda installation. On to new challenges!</p>
+
+<p>Cheers!</p>
+
+<p>David</p>
+
+
+<!-- Comments only for posts -->
+
+    
+
+
+            </article>
+        </main>
+
+        <footer>
+          <p class="copy">
+            <small> © David Hanny 2025
+                    | Powered by Jekyll and
+                    <a target="_blank" href="https://github.com/jitinnair1/gradfolio/" rel="noopener noreferrer">Gradfolio</a>.
+                    Last updated on 12 September 2025
+            </small>
+          </p>
+
+        <div class="rounded-social-buttons">
+<a title="" class="social-button linkedin" href="https://www.linkedin.com/in/davidhanny/" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-linkedin"></i>
+</a><a title="" class="social-button github" href="https://www.github.com/hanny-bal" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-github"></i>
+</a><a title="" class="social-button gscholar" itemprop="sameAs" href="https://scholar.google.com/citations?user=iLWMR2oAAAAJ" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-brands fa-google-scholar"></i>
+</a><a title="" class="social-button orcid" href="https://orcid.org/0009-0004-8017-0786" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-orcid"></i>
+</a>
+</div>
+
+
+        </footer>
+
+        <!-- Google Analytics Tracking code -->
+<script src="https://cdn.jsdelivr.net/npm/ga-lite@1/dist/ga-lite.min.js" async></script>
+<script>
+var galite = galite || {};
+galite.UA = '';
+</script>
+
+    </body>
+
+</html>

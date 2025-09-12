@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link rel="stylesheet" href="/assets/css/main.css">
+
+        <h1 class="post-headline">David Hanny</h1>
+        <h3 class="post-description">PhD Researcher | Spatial Data Science</h3>
+
+        <div class="links"> <!-- note: I removed the scroll class -->
+        <a href="/">Home</a>
+        <a href="/publications.html">Publications</a>
+        <a href="/project-archive.html">Projects</a>
+        <a href="/download/cv_hanny.pdf", target="_blank">CV</a>
+        <a href="/blog/">Blog</a>
+        <!-- <a href="https://hannybal.bearblog.dev/" target="_blank">Blog</a>-->
+        <!--<a href="/projects/">Projects</a>-->
+        <!--<a href="/archive/">Archive</a>-->
+</div>
+
+
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Persistent version control in Google Colab with Git | David Hanny</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Persistent version control in Google Colab with Git" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learn how to set up persistent Git version control in Google Colab using Google Drive and Personal Access Tokens (PATs). Ideal for managing GitHub or GitLab repositories directly in your Colab notebooks." />
+<meta property="og:description" content="Learn how to set up persistent Git version control in Google Colab using Google Drive and Personal Access Tokens (PATs). Ideal for managing GitHub or GitLab repositories directly in your Colab notebooks." />
+<link rel="canonical" href="http://localhost:4000/blog/2025/git-colab/" />
+<meta property="og:url" content="http://localhost:4000/blog/2025/git-colab/" />
+<meta property="og:site_name" content="David Hanny" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-10T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Persistent version control in Google Colab with Git" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-10T00:00:00+01:00","datePublished":"2025-01-10T00:00:00+01:00","description":"Learn how to set up persistent Git version control in Google Colab using Google Drive and Personal Access Tokens (PATs). Ideal for managing GitHub or GitLab repositories directly in your Colab notebooks.","headline":"Persistent version control in Google Colab with Git","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2025/git-colab/"},"url":"http://localhost:4000/blog/2025/git-colab/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+        <!-- Generated using https://favicon.io/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?">
+<link rel="manifest" href=site.webmanifest">
+
+
+        <!-- MathJax -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+     processEscapes: true
+    }
+  });
+</script>
+
+
+        <!-- Load fontawesome here for faster loadtimes: https://stackoverflow.com/a/35880730/9523246 -->
+        <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v6.6.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+    </head>
+
+    <body>
+        <main>
+            <article>
+                <h1 class="post-headline">Persistent version control in Google Colab with Git</h1>
+<p class="meta"><small>January 10, 2025, 4 minute read</small></p>
+
+<p>In all of my projects, I usually follow a local-first approach. The code should run effectively on my laptop. And if it does not, it is time to think about performance adjustements. Because why waste precious cloud compute resources and cause CO2 emossions for something that could easily run a laptop? Obviously, this strategy sometimes does not work. This is especially true when working with Large Language Models (LLMs). Fine-tuning large models is simply unrealistic on a small laptop GPU. Thus, I tend to use cloud GPU resources for such tasks.</p>
+
+<p>There are plenty of options available like <a href="https://lightning.ai/" target="_blank" rel="noopener noreferrer">Lightning AI</a>, University-internal resources or <a href="colab.google.com" target="blank">Google Colab</a>. The latter (Colab) is the overall cheapest and most flexible option when I quickly want to check if a workflow runs without issues.</p>
+
+<p>The only issue with Colab is usually that I need to upload all of my files manually, run my workflow and make needed adaptions, and then download the modified files again. This is not only tedious but sometimes also leads to versioning issues. A much better way would be to use Git – which is generally possible in Colab. However, Colab storage is usually temporary and the notebook itself still cannot be synced via Git when working this way.</p>
+
+<p>On a mission to solve this issue, I found a post on <a href="https://stackoverflow.com/questions/59075561/cloning-a-gitlab-project-to-a-google-colab-instance-using-ssh-or-https" target="_blank" rel="noopener noreferrer">StackOverflow</a> by Gonzalo Polo who proposes a solution for persistent version control using Google Drive which I adapted for my needs. It utilises Personal Access Tokens (PATs) for private repositories on Gitlab/GitHub combined with persistant Google Drive storage.</p>
+
+<h2 id="obtain-a-personal-access-token">Obtain a Personal Access Token</h2>
+<p>First of all, you need a Personal Access Token (PAT) from your Git provider.</p>
+
+<ul>
+  <li>For Gitlab, go to your profile, <em>Preferences</em>, <em>Access tokens</em> and create a new token with <code class="language-plaintext highlighter-rouge">read_repository</code> and <code class="language-plaintext highlighter-rouge">write_repository</code> privileges.</li>
+  <li>For GitHub, go to <em>Settings</em>, <em>Developer Settings</em>, <em>Personal access tokens</em>, <em>Tokens</em>, and then generate a new token with full <code class="language-plaintext highlighter-rouge">repo</code> privileges.</li>
+</ul>
+
+<p>Each of these steps will give you a PAT which you should store somewhere locally. It can only be viewed once.</p>
+
+<h2 id="cloning-a-repository">Cloning a Repository</h2>
+<p>In theory, your PAT would suffice to act with your Git repository on the temporary storage. You can now clone and subsequently interact with Git repositories on Colab (and any other cloud provider) using the HTTPS link of the repository. Simply copy the HTTPS URL of the repository (e.g. https://github.com/hanny-bal/hanny-bal.github.io.git) and adapt it as follows:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://&lt;username&gt;:&lt;Personal_Access_Token&gt;@github.com/hanny-bal/hanny-bal.github.io.git
+</code></pre></div></div>
+
+<p>Alternatively, you can also use the following code:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
+git remote add origin https://&lt;username&gt;:&lt;Personal_Access_Token&gt;@github.com/hanny-bal/hanny-bal.github.io.git
+git pull origin master
+</code></pre></div></div>
+
+<p>Essentially, you need use a combination of username and PAT before the main URL. Git commands should then work as intended.</p>
+
+<h2 id="persistant-storage-using-google-drive">Persistant Storage using Google Drive</h2>
+<p>On a normal cloud server with persistent storage, the tutorial would stop here. However, we are on Colab. First thing you need to do is create a folder for your repository on Google Drive. Within this folder (which is not initialised yet), create a notebook called <code class="language-plaintext highlighter-rouge">git_interaction.ipynb</code> and open it with <code class="language-plaintext highlighter-rouge">cpu</code> compute in Colab.</p>
+
+<p>This notebook can be used to interact with Git and is basically an alternative to command line usage. Within this notebook, we can implement the following cells/functionalities.</p>
+
+<p>We start with some imports and variable setups.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
+<span class="kn">from</span> <span class="n">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="n">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="p">.</span><span class="nf">mount</span><span class="p">(</span><span class="sh">'</span><span class="s">/content/drive</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># Repository URL 
+</span><span class="n">GIT_HTTPS_URL</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sh">'</span><span class="s">https://github.com/hanny-bal/hanny-bal.github.io.git</span><span class="sh">'</span>  <span class="c1"># example
+</span>
+<span class="c1"># Path to your repository on Google Drive
+</span><span class="n">REPOSITORY_PATH</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sh">'</span><span class="s">content/drive/repos/myrepo</span><span class="sh">'</span>  <span class="c1"># example
+</span>
+<span class="c1"># Personal Access Token and Git username
+</span><span class="n">GIT_USERNAME</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sh">'</span><span class="s">&lt;your-username&gt;</span><span class="sh">'</span>
+<span class="n">GIT_PATH</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sh">'</span><span class="s">&lt;your-personal-access-token&gt;</span><span class="sh">'</span>
+</code></pre></div></div>
+
+<p>We can then build the full modified Git URL.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">insert_string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">GIT_USERNAME</span><span class="si">}</span><span class="s">:</span><span class="si">{</span><span class="n">GIT_PATH</span><span class="si">}</span><span class="s">@</span><span class="sh">'</span>
+<span class="n">GIT_URL</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">GIT_HTTPS_URL</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="s">https://</span><span class="sh">'</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://</span><span class="si">{</span><span class="n">insert_string</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>In case no <code class="language-plaintext highlighter-rouge">.git</code> folder exists, we initialise the repository.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if not os.path.isdir(f'{REPOSITORY_PATH}/.git'):
+    !git config --global init.defaultBranch &lt;branch&gt;
+    !git init $REPOSITORY_PATH
+    !cd $REPOSITORY_PATH; git config --local user.email &lt;your-user-email@yourmail.com&gt;
+    !cd $REPOSITORY_PATH; git config --local user.name &lt;your-username&gt;
+    !cd $REPOSITORY_PATH; git remote add origin $GIT_URL
+    !cd $REPOSITORY_PATH; git pull origin &lt;branch&gt;
+    !cd $REPOSITORY_PATH; !printf '\ngit_interaction.ipynb' &gt;&gt; '.gitignore'  # ignore the git interaction file
+</code></pre></div></div>
+
+<p>To print the repository status, we can use:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print('Curent status:')
+!cd $REPOSITORY_PATH; git status
+print('\n\nGit Log:')
+!cd $REPOSITORY_PATH; git log
+</code></pre></div></div>
+
+<p>Lastly, interaction with Git is possible as normal. Just make sure to <code class="language-plaintext highlighter-rouge">cd</code> into the correct directory before doing anything.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Add files
+!cd $REPOSITORY_PATH; git add &lt;file&gt;
+
+# Make commits
+!cd $REPOSITORY_PATH; git commit -am "My commit message"
+
+# Push
+!cd $REPOSITORY_PATH; git push &lt;origin&gt; &lt;master/main&gt;
+
+# Switch branches
+!cd $REPOSITORY_PATH; git checkout &lt;branch&gt;
+</code></pre></div></div>
+
+<h2 id="done">Done!</h2>
+<p>The interaction file is now your personal Git interaction tool for Google Colab with persistent storage on Google Drive. In addition, the script can be used on all kinds of online services like Lightning AI, vast.ai, Paperspace and many more. Have fun coding!</p>
+
+<p>Cheers,
+David</p>
+
+
+<!-- Comments only for posts -->
+
+    
+
+
+            </article>
+        </main>
+
+        <footer>
+          <p class="copy">
+            <small> © David Hanny 2025
+                    | Powered by Jekyll and
+                    <a target="_blank" href="https://github.com/jitinnair1/gradfolio/" rel="noopener noreferrer">Gradfolio</a>.
+                    Last updated on 12 September 2025
+            </small>
+          </p>
+
+        <div class="rounded-social-buttons">
+<a title="" class="social-button linkedin" href="https://www.linkedin.com/in/davidhanny/" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-linkedin"></i>
+</a><a title="" class="social-button github" href="https://www.github.com/hanny-bal" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-github"></i>
+</a><a title="" class="social-button gscholar" itemprop="sameAs" href="https://scholar.google.com/citations?user=iLWMR2oAAAAJ" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-brands fa-google-scholar"></i>
+</a><a title="" class="social-button orcid" href="https://orcid.org/0009-0004-8017-0786" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-orcid"></i>
+</a>
+</div>
+
+
+        </footer>
+
+        <!-- Google Analytics Tracking code -->
+<script src="https://cdn.jsdelivr.net/npm/ga-lite@1/dist/ga-lite.min.js" async></script>
+<script>
+var galite = galite || {};
+galite.UA = '';
+</script>
+
+    </body>
+
+</html>

@@ -1,2 +1,3 @@
-_code/
-.vscode
+.DS_Store
+.idea
+.devcontainer

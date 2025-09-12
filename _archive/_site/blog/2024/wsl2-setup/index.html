@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link rel="stylesheet" href="/assets/css/main.css">
+
+        <h1 class="post-headline">David Hanny</h1>
+        <h3 class="post-description">PhD Researcher | Spatial Data Science</h3>
+
+        <div class="links"> <!-- note: I removed the scroll class -->
+        <a href="/">Home</a>
+        <a href="/publications.html">Publications</a>
+        <a href="/project-archive.html">Projects</a>
+        <a href="/download/cv_hanny.pdf", target="_blank">CV</a>
+        <a href="/blog/">Blog</a>
+        <!-- <a href="https://hannybal.bearblog.dev/" target="_blank">Blog</a>-->
+        <!--<a href="/projects/">Projects</a>-->
+        <!--<a href="/archive/">Archive</a>-->
+</div>
+
+
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Set up a Linux development environment on Windows using WSL2 and Debian | David Hanny</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Set up a Linux development environment on Windows using WSL2 and Debian" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learn how to install and configure a full Linux development environment on Windows using WSL2. This step-by-step guide covers Debian setup, internet fixes, environment variables, and VS Code integration." />
+<meta property="og:description" content="Learn how to install and configure a full Linux development environment on Windows using WSL2. This step-by-step guide covers Debian setup, internet fixes, environment variables, and VS Code integration." />
+<link rel="canonical" href="http://localhost:4000/blog/2024/wsl2-setup/" />
+<meta property="og:url" content="http://localhost:4000/blog/2024/wsl2-setup/" />
+<meta property="og:site_name" content="David Hanny" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-10-28T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Set up a Linux development environment on Windows using WSL2 and Debian" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-10-28T00:00:00+01:00","datePublished":"2024-10-28T00:00:00+01:00","description":"Learn how to install and configure a full Linux development environment on Windows using WSL2. This step-by-step guide covers Debian setup, internet fixes, environment variables, and VS Code integration.","headline":"Set up a Linux development environment on Windows using WSL2 and Debian","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2024/wsl2-setup/"},"url":"http://localhost:4000/blog/2024/wsl2-setup/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+        <!-- Generated using https://favicon.io/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?">
+<link rel="manifest" href=site.webmanifest">
+
+
+        <!-- MathJax -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+     processEscapes: true
+    }
+  });
+</script>
+
+
+        <!-- Load fontawesome here for faster loadtimes: https://stackoverflow.com/a/35880730/9523246 -->
+        <script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v6.6.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+    </head>
+
+    <body>
+        <main>
+            <article>
+                <h1 class="post-headline">Set up a Linux development environment on Windows using WSL2 and Debian</h1>
+<p class="meta"><small>October 28, 2024, 4 minute read</small></p>
+
+<p>During my project work, I frequently found myself wanting a solid development environment on Linux. In my experience, it’s much easier to manage, packages are easier to install and if I want to deploy my software on a Linux server later on, there’s just much less fuzz. Also, Free and Open-Source Software (FOSS) for the win in general 🐧!</p>
+
+<p>However, my work computer was always restricted to Windows so far. I couldn’t go the traditional route of dual-booting and running a full Virtual Machine (VM) on top of Windows seemed a bit counter-intuitive for me. No. I wanted to seamlessly integrate Linux tools and workflows into my Windows machine. To my surprise, this was possible using the Windows Subsystem for Linux 2 (WSL2).</p>
+
+<h2 id="wsl2-vs-native-linux">WSL2 vs native Linux</h2>
+<p>WSL2 is the updated version of WSL, a virtualisation technology that is a capable of running a full Linux kernel inside a utility VM on Windows. It essentially is a very lightweight VM without the traditional overhead. WSL2 is directly integrated in linux and is compatible with system calls. This sounds great, right?</p>
+
+<p>Initially, one of my main concerns was performance. However, it turns out that these worries were in vain. According to <a href="https://www.techradar.com/news/windows-11-wsl-2-is-almost-as-quick-as-running-linux-natively" target="_blank" rel="noopener noreferrer">Techradar</a>, WSL2 operated at about 94% of the speed of a native Linux installation on Windows 11 when combined with Ubuntu 20.04 LTS. Though, there is <a href="https://www.phoronix.com/review/windows11-wsl2-zen4" target="_blank" rel="noopener noreferrer">some minor lag</a> in I/O operations due to the added layer of virtualisation. But for development and testing, this shouldn’t be much of an issue.</p>
+
+<h2 id="step-by-step-installation">Step-by-Step installation</h2>
+<p>Now, to the actual content of this article: How to easily set up a reasonable development environment using WSL2 on Windows?</p>
+
+<h3 id="step-1-make-sure-you-have-wsl2-installed">Step 1: Make sure you have WSL2 installed</h3>
+<p>If you’re using Windows 11 or any newer build of Windows 10, WSL2 should already be installed by default. You can check it by running the command <code class="language-plaintext highlighter-rouge">wsl --help</code> in a PowerShell terminal. If it runs successfully, then all good. If not, you can install WSL2 as described <a href="https://learn.microsoft.com/en-us/windows/wsl/install" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+<h3 id="step-2-install-a-distro">Step 2: Install a distro</h3>
+<p>Next, you need to install a Linux distribution that will act as a basis for your development VM. In my case, I used <strong>Debian</strong> as my go-to-distro. However, there are plenty of others like Ubuntu or Oracle Linux available too. You can check all distros available using the comment <code class="language-plaintext highlighter-rouge">wsl --list --online</code>. Once you have made a choice, you can install your Linux system using the command:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wsl</span><span class="w"> </span><span class="nt">--install</span><span class="w"> </span><span class="nt">-d</span><span class="w"> </span><span class="nx">Debian</span><span class="w"> </span><span class="nt">--web-download</span><span class="w">
+</span></code></pre></div></div>
+
+<p>You can, of course, replace <code class="language-plaintext highlighter-rouge">Debian</code> with your distro name.</p>
+
+<h3 id="step-3-only-if-needed-fix-internet-connectivity">Step 3 (only if needed): Fix internet connectivity</h3>
+<p>After installing and setting up the root username and password, you should be able to access your Linux VM by merely entering the command <code class="language-plaintext highlighter-rouge">wsl</code> in a PowerShell terminal. The first thing I always do on Linux is to update the software installed using <code class="language-plaintext highlighter-rouge">apt update &amp;&amp; apt upgrade</code>. However, on some machines, I found that the internet speeds were horribly slow within WSL2. To fix this, you might need to adjust your nameserver settings by changing up your <code class="language-plaintext highlighter-rouge">resolv.conf</code> file as follows:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo rm</span> /etc/resolv.conf
+<span class="nb">sudo </span>bash <span class="nt">-c</span> <span class="s1">'echo "nameserver 8.8.8.8" &gt; /etc/resolv.conf'</span>
+<span class="nb">sudo </span>bash <span class="nt">-c</span> <span class="s1">'echo "[network]" &gt; /etc/wsl.conf'</span>
+<span class="nb">sudo </span>bash <span class="nt">-c</span> <span class="s1">'echo "generateResolvConf = false" &gt;&gt; /etc/wsl.conf'</span>
+<span class="nb">sudo </span>chattr +i /etc/resolv.conf
+</code></pre></div></div>
+
+<p>Again, this step must only be followed there are issues with the internet connection within your WSL2 system. I didn’t encounter this issue on my newer Windows 11 machine.</p>
+
+<h3 id="step-4-install-required-software-and-set-environment-variables">Step 4: Install required software and set environment variables</h3>
+<p>If you need environment variables that persist across sessions on your virtual Linux system, you can adopt your <code class="language-plaintext highlighter-rouge">.bashrc</code> file accordingly:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano ~/.bashrc
+<span class="nb">export </span><span class="nv">VARIABLE_NAME</span><span class="o">=</span>variable_value <span class="c"># add this line for each variable</span>
+</code></pre></div></div>
+
+<p>Then save using <em>Ctrl+X</em>, close <code class="language-plaintext highlighter-rouge">.bashrc</code> and restart your terminal to apply the changes. Your environment variable should then be visible when typing <code class="language-plaintext highlighter-rouge">echo $VARIABLE_NAME</code>.</p>
+
+<p>You can also rapidly install Miniconda with Python by running the following chain of commands:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>wget
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+</code></pre></div></div>
+
+<h3 id="step-5-limit-wsl2-memory-usage">Step 5: Limit WSL2 memory usage</h3>
+<p>WSL2 can be a bit RAM-hungry by default. To limit memory usage and automatically drop cached files, you can create a <code class="language-plaintext highlighter-rouge">.wslconfig</code> file in your Windows home directory (that is, <code class="language-plaintext highlighter-rouge">C:\Users\&lt;UserName&gt;</code>) and fill it with the following configuration:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[wsl2]
+memory=48GB
+[experimental]
+autoMemoryReclaim=dropcache
+</code></pre></div></div>
+
+<p>For context, I had 64GB of RAM on my machine available. Setting a 48GB cap ensures that WSL2 doesn’t use more than I need and activates automatic memory reclamation. Feel free to adapt this number accordingly. <code class="language-plaintext highlighter-rouge">autoMemoryReclaim=dropcache</code> further enables the instant relase of cached memory if not needed anymore.</p>
+
+<h3 id="step-6-start-developing">Step 6: Start developing</h3>
+<p>To start developing, you can now connect to your WSL2 machine via Visual Studio Code’s <a href="https://code.visualstudio.com/docs/remote/remote-overview" target="_blank" rel="noopener noreferrer">Remote Development extension</a>. It is even possible to connect from a remote computer to your windows machine <em>into</em> WSL2. Quite amazing!</p>
+
+<h2 id="done">Done!</h2>
+<p>WSL2 with Debian on Windows provides an efficient development environment for my needs. I honestly believe that WSL2 hits the mark for anyone looking to combine Linux tools with Windows. It’s best of both world, in a sense. Have fun!</p>
+
+<p>Cheers!</p>
+
+<p>David</p>
+
+
+<!-- Comments only for posts -->
+
+    
+
+
+            </article>
+        </main>
+
+        <footer>
+          <p class="copy">
+            <small> © David Hanny 2025
+                    | Powered by Jekyll and
+                    <a target="_blank" href="https://github.com/jitinnair1/gradfolio/" rel="noopener noreferrer">Gradfolio</a>.
+                    Last updated on 12 September 2025
+            </small>
+          </p>
+
+        <div class="rounded-social-buttons">
+<a title="" class="social-button linkedin" href="https://www.linkedin.com/in/davidhanny/" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-linkedin"></i>
+</a><a title="" class="social-button github" href="https://www.github.com/hanny-bal" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-github"></i>
+</a><a title="" class="social-button gscholar" itemprop="sameAs" href="https://scholar.google.com/citations?user=iLWMR2oAAAAJ" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-brands fa-google-scholar"></i>
+</a><a title="" class="social-button orcid" href="https://orcid.org/0009-0004-8017-0786" itemprop="sameAs" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-orcid"></i>
+</a>
+</div>
+
+
+        </footer>
+
+        <!-- Google Analytics Tracking code -->
+<script src="https://cdn.jsdelivr.net/npm/ga-lite@1/dist/ga-lite.min.js" async></script>
+<script>
+var galite = galite || {};
+galite.UA = '';
+</script>
+
+    </body>
+
+</html>
