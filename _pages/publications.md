@@ -1,9 +1,8 @@
 ---
-title: 
+title: "Publications: GeoAI, machine learning, disaster management and social sensing"
 layout: default
 permalink: publications.html
-seo_title: "Publications: GeoAI, machine learning, disaster management and social sensing"
-seo_description: "Explore my latest academic publications on GeoAI, spatially explicit and multimodal machine learning, disaster management and social sensing."
+description: "Explore my latest academic publications on GeoAI, spatially explicit and multimodal machine learning, disaster management and social sensing."
 ---
 
 

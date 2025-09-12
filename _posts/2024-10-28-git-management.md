@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Using multiple Git accounts in parallel with SSH"
+# title: "Using multiple Git accounts in parallel with SSH"
 excerpt: "Managing multiple Git accounts on a single machine is often essential. Say you’re juggling personal and work repositories across platforms like GitHub and GitLab. A step-by-step guide to set up and organise accounts seamlessly using SSH."
 minutes: 3
-seo_title: "How to Use multiple GitHub and GitLab Accounts with SSH on one Machine"
-seo_description: "Learn how to manage multiple Git accounts (GitHub and GitLab) on a single computer using SSH keys and configuration files. A step-by-step guide for seamless Git authentication and workflow separation."
+title: "How to Use multiple GitHub and GitLab Accounts with SSH on one Machine"
+description: "Learn how to manage multiple Git accounts (GitHub and GitLab) on a single computer using SSH keys and configuration files. A step-by-step guide for seamless Git authentication and workflow separation."
 ---
 
 Picture this: you have repositories on Gitlab for work and another set on GitHub for your personal projects. If you're anything like me, sometimes you will need to access both on the same machine. In principle, this can be achieved fairly easily. However, getting there can be challenging, especially if you're not familiar with the exact working principles of Git and its authentication methods. 
