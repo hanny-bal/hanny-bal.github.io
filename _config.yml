@@ -7,7 +7,7 @@ baseurl: ""
 
 footer_only_homepage: true
 footer_url: "https://github.com/rhl-bthr"
-footer_text: "Scholar · ORCID · LinkedIn · Theme by rhl-bthr"
+footer_text: "Scholar< · ORCID · LinkedIn · Theme by rhl-bthr"
 
 profile-picture: assets/profile_dh.jpg
 favicon_location: assets/favicon.ico
