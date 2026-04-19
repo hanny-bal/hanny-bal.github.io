@@ -2,8 +2,7 @@
 layout: post
 title: "Life between confusion and illusion"
 subtitle: "The saying 'There ain't no such thing as a free lunch' applies to many things in life. A story about navigating the unknown, excitement and dealing with confusion."
-date: 2021-06-01
-tags: [personal, minimalism, en]
+tags: [personal, en]
 ---
 
 A year can feel like an extended month. Or it can feel like decades for which one need tens of calendars instead of one. especially when big changes happen. Often, the individual months during these times don't seem special at all. But they do add up to some sort of time-jelly that can't be defined nor measured. Until one day, you wake up and realise how different things have become. Weirdly enough, this happens all the time.
