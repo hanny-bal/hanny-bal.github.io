@@ -1,13 +1,13 @@
 title: David Hanny
-author: David
+author: David Hanny
 subtitle: Spatial data science, machine learning, books, and writing
 
 url: "https://hanny.dev"
 baseurl: ""
 
 footer_only_homepage: true
-footer_url: "https://github.com/rhl-bthr"
-footer_text: "Scholar< · ORCID · LinkedIn · Theme by rhl-bthr"
+footer_url: "DEPRECATED"
+footer_text: "DEPRECATED"
 
 profile-picture: assets/profile_dh.jpg
 favicon_location: assets/favicon.ico
@@ -18,12 +18,14 @@ sass:
     sass_dir: css
 
 navbar:
- - name: "Blog"
-   link: "blog"
  - name: "About"
    link: "index"
- - name: "Resume"
-   absolute-link: "https://rahulbothra.com/cv.pdf"
+ - name: "Blog"
+   link: "blog"
+ - name: "Projects"
+   link: "projects"
+ - name: "Publications"
+   absolute-link: "https://scholar.google.com/citations?user=iLWMR2oAAAAJ"
 
 plugins:
   - jekyll-seo-tag

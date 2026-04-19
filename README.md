@@ -17,3 +17,4 @@ My personal website based on [Parchment](https://github.com/rhl-bthr/parchment),
   Subdirectories are included recusively.
 * To add a profile picture, use class `profile-picture` around
   the image.
+* To change the footer, edit it directly under `_includes/footer.html`
