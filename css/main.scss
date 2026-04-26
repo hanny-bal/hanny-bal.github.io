@@ -234,8 +234,10 @@ code {
     }
     img {
         text-align: center;
-        margin: 10px 10px 10px 10px;
-        max-width: $max-width;
+        // margin: 10px 10px 10px 10px;
+        margin: 5px 5px 5px 5px;
+        max-width: 100%;
+        height: auto;
     }
 
     .color-red {
