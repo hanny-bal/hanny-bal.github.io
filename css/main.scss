@@ -300,3 +300,94 @@ table tr th :first-child, table tr td :first-child {
 table tr th :last-child, table tr td :last-child {
     margin: 0;
 }
+
+
+// Dark mode
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+
+    a {
+        color: $accent;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    hr {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    }
+
+    code {
+        background-color: #2d2d2d;
+        color: #e0e0e0;
+    }
+
+    .navbar .site-title {
+        color: #e0e0e0;
+    }
+
+    .post-card .title, .post-card .subtitle {
+        color: #e0e0e0;
+    }
+
+    .post-card .details {
+        color: #a0a0a0;
+    }
+
+    .page-title {
+        color: #e0e0e0;
+    }
+
+    .page-subtitle {
+        color: #a0a0a0;
+    }
+
+    .footer {
+        color: #a0a0a0;
+    }
+
+    blockquote {
+        border-left: 5px solid #555555;
+        color: #e0e0e0;
+    }
+
+    table tr {
+        background-color: #1e1e1e;
+    }
+
+    table tr:nth-child(2n) {
+        background-color: #2d2d2d;
+    }
+
+    table tr th {
+        background-color: #1e1e1e;
+        border: 1px solid #444444;
+        color: #e0e0e0;
+    }
+
+    table tr td {
+        border: 1px solid #444444;
+        color: #e0e0e0;
+    }
+
+    .highlight-red {
+        background-color: #5a1a1a;
+    }
+
+    .highlight-orange {
+        background-color: #5a3d1a;
+    }
+
+    .highlight-green {
+        background-color: #1a5a2a;
+    }
+
+    .highlight-blue {
+        background-color: #1a3a5a;
+    }
+}
