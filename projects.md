@@ -8,12 +8,12 @@ Over the years, I have started and completed a number of side projects and extra
 Nowadays, most of my projects revolve around my work as a researcher, e.g. implementing social media crawlers or improving any skills required for my work. Not all of this is public. Building up the [student union (ÖH)](https://www.oeh.ac.at/){:target="_blank"} at IT:U as its chairperson also takes up a notable chunk of my time.
 
 ### Technical projects
-These is a selection of my _public_ technical projects, many of which originated in my work or studies.
+Nowadays, most of my technical projects originate from my work and studies. The most notable repository to find my current work is Zenodo.
 
-- [Disaster Detection](https://zenodo.org/records/20048356){:target="_blank"} (2026): Disaster detection from social media, news and weather using LLMs with LangChain.
-- [Bluesky Crawler + Analysis](https://github.com/IT-U/GSAI_PUBLIC_Bluesky_for_Disaster_Management){:target="_blank"} (2026): A social media crawler for [Bluesky](https://bsky.app/){:target="_blank"}, and code for the spatio-temporal analysis of posts.
-- [Relevance Regression](https://github.com/IT-U/GSAI_PUBLIC_Multimodal_Relevance_Regression){:target="_blank"} (2026): A continuous-valued regression model for assessing social media post relevance in disaster response.
-- [Relevance Classifier](https://github.com/IT-U/GSAI_PUBLIC_Multimodal_Disaster_Relevance_Classification){:target="_blank"} (2025): A multimodal relevance classification model for social media posts in disaster response.
+- [Research Software (Zenodo)](https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Hanny%2C%20David%22&f=resource_type%3Asoftware&l=list&p=1&s=10&sort=bestmatch){:target="_blank"}: Recent paper implementations archived on Zenodo.
+- [Models (Zenodo)](https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Hanny%2C%20David%22&f=resource_type%3Amodel&l=list&p=1&s=10&sort=bestmatch){:target="_blank"}: Trained machine learning models (e.g. for social media post analysis).
+
+There is also a small number of personal projects hosted on GitHub:
 - [Café Map](https://github.com/hanny-bal/cafe-map){:target="_blank"} (2024): A [Leaflet.js](https://leafletjs.com/){:target="_blank"} map of all cafés in Salzburg with my personal reviews and recommendations. View it [here](https://www.hanny.dev/download/cafe-map/index.html){:target="_blank"}.
 - [Third Places](https://experience.arcgis.com/experience/b72e9a77e89a4bf49554f726a91af5ee?org=ZGIS){:target="_blank"} (2024): An interactive map of third places in Salzburg.
 - [LSH](https://github.com/hanny-bal/LSH){:target="_blank"} (2023): A Python implementation of nearest-neighbour search for text data using locality-sensitive hashing (LSH).
