@@ -7,6 +7,14 @@ My personal website based on [Parchment](https://github.com/rhl-bthr/parchment),
 * Run `bundle exec jekyll serve --incremental`
 * Visit browser at `http://127.0.0.1:4000/`
 
+## Testing locally with Docker
+* Make sure Docker Desktop is running, then run `docker compose up --build` from the repository root
+* Visit the site at `http://localhost:4000`
+* Live reload is enabled: changed files rebuild the site automatically. On Windows bind mounts this takes a few seconds
+* Installed gems are cached in a Docker volume, so only the first start is slow
+* Stop with `docker compose down` (add `-v` to also delete the gem cache)
+* For a one-off production build into `_site`, run `docker compose run --rm site bundle exec jekyll build`
+
 ## Usage
 * You can customise variables in `_config.yml` and `css/*` files.
 * You can add markdown files, say `foo.md` in the root directory

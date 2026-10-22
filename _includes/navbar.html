@@ -8,7 +8,7 @@
                 {% assign x-url = x.absolute-link %}
                 {% assign target = "_blank" %}
             {% else %}
-                {% assign x-url = site.url | append: site.baseurl | append: "/" | append: x.link %}
+                {% assign x-url = site.baseurl | append: "/" | append: x.link %}
                 {% assign target = "_self" %}
             {% endif %}
             <a href="{{ x-url }}" target="{{ target }}">{{ x.name }}</a>

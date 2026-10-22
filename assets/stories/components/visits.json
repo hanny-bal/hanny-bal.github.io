@@ -1,0 +1,664 @@
+{
+ "records": [
+  {
+   "date": "2024-01",
+   "district": "Altstadt",
+   "visits": 691
+  },
+  {
+   "date": "2024-01",
+   "district": "Neustadt",
+   "visits": 419
+  },
+  {
+   "date": "2024-01",
+   "district": "Schallmoos",
+   "visits": 286
+  },
+  {
+   "date": "2024-01",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 231
+  },
+  {
+   "date": "2024-02",
+   "district": "Altstadt",
+   "visits": 633
+  },
+  {
+   "date": "2024-02",
+   "district": "Neustadt",
+   "visits": 443
+  },
+  {
+   "date": "2024-02",
+   "district": "Schallmoos",
+   "visits": 291
+  },
+  {
+   "date": "2024-02",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 205
+  },
+  {
+   "date": "2024-03",
+   "district": "Altstadt",
+   "visits": 712
+  },
+  {
+   "date": "2024-03",
+   "district": "Neustadt",
+   "visits": 433
+  },
+  {
+   "date": "2024-03",
+   "district": "Schallmoos",
+   "visits": 280
+  },
+  {
+   "date": "2024-03",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 227
+  },
+  {
+   "date": "2024-04",
+   "district": "Altstadt",
+   "visits": 697
+  },
+  {
+   "date": "2024-04",
+   "district": "Neustadt",
+   "visits": 475
+  },
+  {
+   "date": "2024-04",
+   "district": "Schallmoos",
+   "visits": 334
+  },
+  {
+   "date": "2024-04",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 236
+  },
+  {
+   "date": "2024-05",
+   "district": "Altstadt",
+   "visits": 839
+  },
+  {
+   "date": "2024-05",
+   "district": "Neustadt",
+   "visits": 537
+  },
+  {
+   "date": "2024-05",
+   "district": "Schallmoos",
+   "visits": 335
+  },
+  {
+   "date": "2024-05",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 259
+  },
+  {
+   "date": "2024-06",
+   "district": "Altstadt",
+   "visits": 860
+  },
+  {
+   "date": "2024-06",
+   "district": "Neustadt",
+   "visits": 549
+  },
+  {
+   "date": "2024-06",
+   "district": "Schallmoos",
+   "visits": 399
+  },
+  {
+   "date": "2024-06",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 295
+  },
+  {
+   "date": "2024-07",
+   "district": "Altstadt",
+   "visits": 938
+  },
+  {
+   "date": "2024-07",
+   "district": "Neustadt",
+   "visits": 638
+  },
+  {
+   "date": "2024-07",
+   "district": "Schallmoos",
+   "visits": 405
+  },
+  {
+   "date": "2024-07",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 290
+  },
+  {
+   "date": "2024-08",
+   "district": "Altstadt",
+   "visits": 975
+  },
+  {
+   "date": "2024-08",
+   "district": "Neustadt",
+   "visits": 592
+  },
+  {
+   "date": "2024-08",
+   "district": "Schallmoos",
+   "visits": 420
+  },
+  {
+   "date": "2024-08",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 326
+  },
+  {
+   "date": "2024-09",
+   "district": "Altstadt",
+   "visits": 904
+  },
+  {
+   "date": "2024-09",
+   "district": "Neustadt",
+   "visits": 633
+  },
+  {
+   "date": "2024-09",
+   "district": "Schallmoos",
+   "visits": 428
+  },
+  {
+   "date": "2024-09",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 291
+  },
+  {
+   "date": "2024-10",
+   "district": "Altstadt",
+   "visits": 929
+  },
+  {
+   "date": "2024-10",
+   "district": "Neustadt",
+   "visits": 564
+  },
+  {
+   "date": "2024-10",
+   "district": "Schallmoos",
+   "visits": 379
+  },
+  {
+   "date": "2024-10",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 297
+  },
+  {
+   "date": "2024-11",
+   "district": "Altstadt",
+   "visits": 774
+  },
+  {
+   "date": "2024-11",
+   "district": "Neustadt",
+   "visits": 529
+  },
+  {
+   "date": "2024-11",
+   "district": "Schallmoos",
+   "visits": 383
+  },
+  {
+   "date": "2024-11",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 262
+  },
+  {
+   "date": "2024-12",
+   "district": "Altstadt",
+   "visits": 773
+  },
+  {
+   "date": "2024-12",
+   "district": "Neustadt",
+   "visits": 493
+  },
+  {
+   "date": "2024-12",
+   "district": "Schallmoos",
+   "visits": 318
+  },
+  {
+   "date": "2024-12",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 239
+  },
+  {
+   "date": "2025-01",
+   "district": "Altstadt",
+   "visits": 672
+  },
+  {
+   "date": "2025-01",
+   "district": "Neustadt",
+   "visits": 431
+  },
+  {
+   "date": "2025-01",
+   "district": "Schallmoos",
+   "visits": 323
+  },
+  {
+   "date": "2025-01",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 231
+  },
+  {
+   "date": "2025-02",
+   "district": "Altstadt",
+   "visits": 675
+  },
+  {
+   "date": "2025-02",
+   "district": "Neustadt",
+   "visits": 458
+  },
+  {
+   "date": "2025-02",
+   "district": "Schallmoos",
+   "visits": 299
+  },
+  {
+   "date": "2025-02",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 209
+  },
+  {
+   "date": "2025-03",
+   "district": "Altstadt",
+   "visits": 704
+  },
+  {
+   "date": "2025-03",
+   "district": "Neustadt",
+   "visits": 428
+  },
+  {
+   "date": "2025-03",
+   "district": "Schallmoos",
+   "visits": 314
+  },
+  {
+   "date": "2025-03",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 236
+  },
+  {
+   "date": "2025-04",
+   "district": "Altstadt",
+   "visits": 721
+  },
+  {
+   "date": "2025-04",
+   "district": "Neustadt",
+   "visits": 505
+  },
+  {
+   "date": "2025-04",
+   "district": "Schallmoos",
+   "visits": 351
+  },
+  {
+   "date": "2025-04",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 232
+  },
+  {
+   "date": "2025-05",
+   "district": "Altstadt",
+   "visits": 861
+  },
+  {
+   "date": "2025-05",
+   "district": "Neustadt",
+   "visits": 522
+  },
+  {
+   "date": "2025-05",
+   "district": "Schallmoos",
+   "visits": 363
+  },
+  {
+   "date": "2025-05",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 276
+  },
+  {
+   "date": "2025-06",
+   "district": "Altstadt",
+   "visits": 853
+  },
+  {
+   "date": "2025-06",
+   "district": "Neustadt",
+   "visits": 585
+  },
+  {
+   "date": "2025-06",
+   "district": "Schallmoos",
+   "visits": 436
+  },
+  {
+   "date": "2025-06",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 288
+  },
+  {
+   "date": "2025-07",
+   "district": "Altstadt",
+   "visits": 995
+  },
+  {
+   "date": "2025-07",
+   "district": "Neustadt",
+   "visits": 632
+  },
+  {
+   "date": "2025-07",
+   "district": "Schallmoos",
+   "visits": 421
+  },
+  {
+   "date": "2025-07",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 308
+  },
+  {
+   "date": "2025-08",
+   "district": "Altstadt",
+   "visits": 948
+  },
+  {
+   "date": "2025-08",
+   "district": "Neustadt",
+   "visits": 610
+  },
+  {
+   "date": "2025-08",
+   "district": "Schallmoos",
+   "visits": 472
+  },
+  {
+   "date": "2025-08",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 326
+  },
+  {
+   "date": "2025-09",
+   "district": "Altstadt",
+   "visits": 964
+  },
+  {
+   "date": "2025-09",
+   "district": "Neustadt",
+   "visits": 652
+  },
+  {
+   "date": "2025-09",
+   "district": "Schallmoos",
+   "visits": 439
+  },
+  {
+   "date": "2025-09",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 298
+  },
+  {
+   "date": "2025-10",
+   "district": "Altstadt",
+   "visits": 917
+  },
+  {
+   "date": "2025-10",
+   "district": "Neustadt",
+   "visits": 559
+  },
+  {
+   "date": "2025-10",
+   "district": "Schallmoos",
+   "visits": 424
+  },
+  {
+   "date": "2025-10",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 308
+  },
+  {
+   "date": "2025-11",
+   "district": "Altstadt",
+   "visits": 803
+  },
+  {
+   "date": "2025-11",
+   "district": "Neustadt",
+   "visits": 562
+  },
+  {
+   "date": "2025-11",
+   "district": "Schallmoos",
+   "visits": 401
+  },
+  {
+   "date": "2025-11",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 257
+  },
+  {
+   "date": "2025-12",
+   "district": "Altstadt",
+   "visits": 792
+  },
+  {
+   "date": "2025-12",
+   "district": "Neustadt",
+   "visits": 480
+  },
+  {
+   "date": "2025-12",
+   "district": "Schallmoos",
+   "visits": 345
+  },
+  {
+   "date": "2025-12",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 255
+  },
+  {
+   "date": "2026-01",
+   "district": "Altstadt",
+   "visits": 668
+  },
+  {
+   "date": "2026-01",
+   "district": "Neustadt",
+   "visits": 459
+  },
+  {
+   "date": "2026-01",
+   "district": "Schallmoos",
+   "visits": 351
+  },
+  {
+   "date": "2026-01",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 225
+  },
+  {
+   "date": "2026-02",
+   "district": "Altstadt",
+   "visits": 715
+  },
+  {
+   "date": "2026-02",
+   "district": "Neustadt",
+   "visits": 453
+  },
+  {
+   "date": "2026-02",
+   "district": "Schallmoos",
+   "visits": 311
+  },
+  {
+   "date": "2026-02",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 221
+  },
+  {
+   "date": "2026-03",
+   "district": "Altstadt",
+   "visits": 685
+  },
+  {
+   "date": "2026-03",
+   "district": "Neustadt",
+   "visits": 442
+  },
+  {
+   "date": "2026-03",
+   "district": "Schallmoos",
+   "visits": 352
+  },
+  {
+   "date": "2026-03",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 235
+  },
+  {
+   "date": "2026-04",
+   "district": "Altstadt",
+   "visits": 770
+  },
+  {
+   "date": "2026-04",
+   "district": "Neustadt",
+   "visits": 519
+  },
+  {
+   "date": "2026-04",
+   "district": "Schallmoos",
+   "visits": 359
+  },
+  {
+   "date": "2026-04",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 237
+  },
+  {
+   "date": "2026-05",
+   "district": "Altstadt",
+   "visits": 849
+  },
+  {
+   "date": "2026-05",
+   "district": "Neustadt",
+   "visits": 518
+  },
+  {
+   "date": "2026-05",
+   "district": "Schallmoos",
+   "visits": 406
+  },
+  {
+   "date": "2026-05",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 286
+  },
+  {
+   "date": "2026-06",
+   "district": "Altstadt",
+   "visits": 887
+  },
+  {
+   "date": "2026-06",
+   "district": "Neustadt",
+   "visits": 620
+  },
+  {
+   "date": "2026-06",
+   "district": "Schallmoos",
+   "visits": 454
+  },
+  {
+   "date": "2026-06",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 283
+  },
+  {
+   "date": "2026-07",
+   "district": "Altstadt",
+   "visits": 1016
+  },
+  {
+   "date": "2026-07",
+   "district": "Neustadt",
+   "visits": 615
+  },
+  {
+   "date": "2026-07",
+   "district": "Schallmoos",
+   "visits": 456
+  },
+  {
+   "date": "2026-07",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 328
+  },
+  {
+   "date": "2026-08",
+   "district": "Altstadt",
+   "visits": 945
+  },
+  {
+   "date": "2026-08",
+   "district": "Neustadt",
+   "visits": 651
+  },
+  {
+   "date": "2026-08",
+   "district": "Schallmoos",
+   "visits": 510
+  },
+  {
+   "date": "2026-08",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 317
+  },
+  {
+   "date": "2026-09",
+   "district": "Altstadt",
+   "visits": 1020
+  },
+  {
+   "date": "2026-09",
+   "district": "Neustadt",
+   "visits": 644
+  },
+  {
+   "date": "2026-09",
+   "district": "Schallmoos",
+   "visits": 456
+  },
+  {
+   "date": "2026-09",
+   "district": "Elisabeth-Vorstadt",
+   "visits": 316
+  }
+ ]
+}

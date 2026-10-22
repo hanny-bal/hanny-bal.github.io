@@ -391,3 +391,158 @@ table tr th :last-child, table tr td :last-child {
         background-color: #1a3a5a;
     }
 }
+
+// Story layout (interactive research stories)
+
+.container.story {
+    max-width: 960px;
+}
+
+.story-subtitle {
+    font-style: italic;
+    color: #5a5a5a;
+    margin-bottom: 2em;
+}
+
+.story .content {
+    line-height: 1.7;
+}
+
+.story-fig {
+    margin: 2.5em 0;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.story-fig figcaption {
+    text-align: center;
+    font-size: 14px;
+    color: #5a5a5a;
+    margin-top: 0.6em;
+}
+
+// Scrollytelling
+
+.scrolly {
+    display: flex;
+    margin: 3em 0;
+}
+
+.scrolly .sticky-fig {
+    position: sticky;
+    top: 0;
+    flex: 1;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scrolly .fig-inner {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    height: 70vh;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.scrolly .steps {
+    width: 380px;
+    min-width: 320px;
+    padding-left: 2em;
+}
+
+.scrolly .step {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    opacity: 0.35;
+    transition: opacity 0.3s;
+}
+
+.scrolly .step:last-child {
+    min-height: 60vh;
+}
+
+.scrolly .step.active {
+    opacity: 1;
+}
+
+.scrolly .step .step-card {
+    background-color: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 6px;
+    padding: 1em 1.2em;
+}
+
+.map-caption {
+    position: absolute;
+    z-index: 500;
+    bottom: 12px;
+    left: 12px;
+    max-width: 70%;
+    padding: 6px 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    font-size: 14px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-container {
+    font: inherit;
+}
+
+@media (max-width: 800px) {
+    .scrolly {
+        display: block;
+    }
+
+    .scrolly .sticky-fig {
+        height: 55vh;
+    }
+
+    .scrolly .fig-inner {
+        height: 55vh;
+    }
+
+    .scrolly .steps {
+        width: auto;
+        min-width: 0;
+        padding-left: 0;
+    }
+
+    .scrolly .step {
+        min-height: auto;
+        margin: 3em 0;
+    }
+}
+
+// Dark mode for stories
+
+@media (prefers-color-scheme: dark) {
+    .story-subtitle {
+        color: #a0a0a0;
+    }
+
+    .story-fig figcaption {
+        color: #a0a0a0;
+    }
+
+    .scrolly .fig-inner {
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .scrolly .step .step-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .map-caption {
+        background-color: rgba(20, 20, 20, 0.9);
+        color: #e0e0e0;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    }
+}

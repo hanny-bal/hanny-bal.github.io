@@ -1,0 +1,20 @@
+services:
+  site:
+    container_name: hanny-bal.github.io
+    image: hanny-bal.github.io/image
+    build: .
+    ports:
+      - "4000:4000"
+      - "35729:35729"
+    volumes:
+      - .:/site
+      - bundle_cache:/bundle
+    # Refresh gems (instant when cached), then serve with live reload.
+    # --force_polling is required because Windows bind mounts do not
+    # propagate file system events to the container.
+    command: >
+      sh -c "bundle install --quiet &&
+             bundle exec jekyll serve --host 0.0.0.0 --drafts --livereload --force_polling"
+
+volumes:
+  bundle_cache:

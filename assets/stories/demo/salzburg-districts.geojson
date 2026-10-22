@@ -1,0 +1,60 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Altstadt", "cafes": 28, "population": 1400 },
+      "geometry": { "type": "Polygon", "coordinates": [[[13.038, 47.791], [13.050, 47.791], [13.050, 47.800], [13.038, 47.800], [13.038, 47.791]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Neustadt", "cafes": 21, "population": 3200 },
+      "geometry": { "type": "Polygon", "coordinates": [[[13.047, 47.798], [13.058, 47.798], [13.058, 47.807], [13.047, 47.807], [13.047, 47.798]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Schallmoos", "cafes": 17, "population": 5600 },
+      "geometry": { "type": "Polygon", "coordinates": [[[13.045, 47.807], [13.058, 47.807], [13.058, 47.815], [13.045, 47.815], [13.045, 47.807]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Elisabeth-Vorstadt", "cafes": 12, "population": 8900 },
+      "geometry": { "type": "Polygon", "coordinates": [[[13.028, 47.813], [13.045, 47.813], [13.045, 47.826], [13.028, 47.826], [13.028, 47.813]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Aigen", "cafes": 11, "population": 4200 },
+      "geometry": { "type": "Polygon", "coordinates": [[[13.058, 47.783], [13.078, 47.783], [13.078, 47.800], [13.058, 47.800], [13.058, 47.783]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Lehen", "cafes": 9, "population": 6100 },
+      "geometry": { "type": "Polygon", "coordinates": [[[13.013, 47.812], [13.027, 47.812], [13.027, 47.822], [13.013, 47.822], [13.013, 47.812]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Maxglan", "cafes": 8, "population": 7300 },
+      "geometry": { "type": "Polygon", "coordinates": [[[12.998, 47.808], [13.012, 47.808], [13.012, 47.820], [12.998, 47.820], [12.998, 47.808]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Nonntal", "cafes": 7, "population": 2100 },
+      "geometry": { "type": "Polygon", "coordinates": [[[13.036, 47.785], [13.048, 47.785], [13.048, 47.791], [13.036, 47.791], [13.036, 47.785]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Riedenburg", "cafes": 6, "population": 4800 },
+      "geometry": { "type": "Polygon", "coordinates": [[[13.028, 47.801], [13.040, 47.801], [13.040, 47.812], [13.028, 47.812], [13.028, 47.801]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Itzling", "cafes": 5, "population": 6500 },
+      "geometry": { "type": "Polygon", "coordinates": [[[13.020, 47.826], [13.040, 47.826], [13.040, 47.838], [13.020, 47.838], [13.020, 47.826]]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Gnigl", "cafes": 4, "population": 5900 },
+      "geometry": { "type": "Polygon", "coordinates": [[[13.056, 47.816], [13.074, 47.816], [13.074, 47.828], [13.056, 47.828], [13.056, 47.816]]] }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "properties": { "name": "Café Sperl", "district": "Altstadt", "rating": 4.8, "espresso": 3.8, "seats": 42 },
+      "geometry": { "type": "Point", "coordinates": [13.0430, 47.7960] } },
+    { "type": "Feature", "properties": { "name": "Kaffee Altstadt Gold", "district": "Altstadt", "rating": 4.6, "espresso": 4.2, "seats": 30 },
+      "geometry": { "type": "Point", "coordinates": [13.0455, 47.7948] } },
+    { "type": "Feature", "properties": { "name": "Rösterei DomQuartier", "district": "Altstadt", "rating": 4.5, "espresso": 3.5, "seats": 24 },
+      "geometry": { "type": "Point", "coordinates": [13.0412, 47.7952] } },
+    { "type": "Feature", "properties": { "name": "Triest", "district": "Neustadt", "rating": 4.4, "espresso": 3.9, "seats": 55 },
+      "geometry": { "type": "Point", "coordinates": [13.0500, 47.8010] } },
+    { "type": "Feature", "properties": { "name": "Dritter Platz", "district": "Schallmoos", "rating": 4.7, "espresso": 4.5, "seats": 28 },
+      "geometry": { "type": "Point", "coordinates": [13.0490, 47.8095] } },
+    { "type": "Feature", "properties": { "name": "Schallmoos Roasters", "district": "Schallmoos", "rating": 4.6, "espresso": 4.0, "seats": 36 },
+      "geometry": { "type": "Point", "coordinates": [13.0520, 47.8115] } },
+    { "type": "Feature", "properties": { "name": "Gleis 1", "district": "Elisabeth-Vorstadt", "rating": 4.2, "espresso": 3.2, "seats": 20 },
+      "geometry": { "type": "Point", "coordinates": [13.0360, 47.8180] } },
+    { "type": "Feature", "properties": { "name": "Krypto Kaffee", "district": "Elisabeth-Vorstadt", "rating": 4.3, "espresso": 3.6, "seats": 18 },
+      "geometry": { "type": "Point", "coordinates": [13.0400, 47.8210] } },
+    { "type": "Feature", "properties": { "name": "Aigen Nordic", "district": "Aigen", "rating": 4.1, "espresso": 4.4, "seats": 26 },
+      "geometry": { "type": "Point", "coordinates": [13.0650, 47.7900] } },
+    { "type": "Feature", "properties": { "name": "Maxglan Milch", "district": "Maxglan", "rating": 3.9, "espresso": 3.0, "seats": 15 },
+      "geometry": { "type": "Point", "coordinates": [13.0060, 47.8130] } },
+    { "type": "Feature", "properties": { "name": "Nonntal Nuss", "district": "Nonntal", "rating": 4.0, "espresso": 3.3, "seats": 22 },
+      "geometry": { "type": "Point", "coordinates": [13.0415, 47.7880] } },
+    { "type": "Feature", "properties": { "name": "Itzling Iced", "district": "Itzling", "rating": 3.8, "espresso": 3.4, "seats": 12 },
+      "geometry": { "type": "Point", "coordinates": [13.0300, 47.8300] } }
+  ]
+}
